@@ -1,0 +1,38 @@
+kind: ZarfPackageConfig
+
+metadata:
+  name: minio-operator
+  description: "UDS Minio Operator Package"
+  version: 5.0.15-uds.0
+
+
+components:
+  - name: minio-operator
+    required: true
+    import:
+      path: common
+    only:
+      flavor: registry1
+      cluster:
+        architecture: amd64
+    charts:
+      - name: minio-operator
+        valuesFiles:
+          - values/registry1-values.yaml
+    images:
+      # TODO Add registry1 images for operator and actual minio
+
+  - name: minio-operator
+    required: true
+    import:
+      path: common
+    only:
+      flavor: upstream
+    charts:
+      - name: minio-operator
+        valuesFiles:
+          - values/upstream-values.yaml
+    images:
+      - quay.io/minio/operator:v5.0.15
+      - minio/mc:latest
+      - quay.io/minio/minio:RELEASE.2024-05-01T01-11-10Z

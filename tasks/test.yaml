@@ -1,0 +1,14 @@
+tasks:
+  - name: all
+    actions:
+      - task: health-check
+
+  - name: health-check
+    actions:
+      - description: Minio Health Check
+        wait:
+          cluster:
+            kind: Deployment
+            name: minio-operator
+            namespace: minio
+            condition: Available

@@ -1,0 +1,15 @@
+apiVersion: uds.dev/v1alpha1
+kind: Package
+metadata:
+  name: "minio-operator"
+  namespace: "minio-operator"
+spec:
+  network:
+    expose: []
+    allow:
+      - direction: Ingress
+        remoteGenerated: IntraNamespace
+      - direction: Egress
+        remoteGenerated: IntraNamespace
+      - direction: Egress
+        remoteGenerated: Anywhere

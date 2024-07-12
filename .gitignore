@@ -1,0 +1,8 @@
+node_modules/
+.DS_STORE
+build/
+tmp
+.cache/
+.idea/
+*.tar.zst
+zarf-sbom

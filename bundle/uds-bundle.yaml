@@ -1,0 +1,14 @@
+kind: UDSBundle
+metadata: 
+  name: uds-package-minio
+  description: A UDS Bundle for minio operator (+tenant)
+  # x-release-please-start-version
+  version: 0.0.1
+  # x-release-please-end 
+
+packages: 
+  - name: minio-operator
+    path: ../
+    # x-release-please-start-version
+    ref: 5.0.15-uds.0
+    # x-release-please-end
