@@ -1,0 +1,34 @@
+# secrets:
+#   name: uds-minio-dev
+#   accessKey: minio 
+#   secretKey: minio123
+tenant:
+  name: uds-minio-dev
+
+
+  imagePullSecret: { }
+  scheduler: { }
+
+  configuration:
+    name: uds-minio-dev
+
+  #    stringData:
+  #       config.env: |-
+  #         export MINIO_ROOT_USER=ROOTUSERNAME
+  #         export MINIO_ROOT_PASSWORD=ROOTUSERPASSWORD
+  #
+    existingSecret: true
+  pools:
+      # 1x4 for standalone
+      # NxV where NxV > 4 for distributed
+    - servers: 1
+      name: pool-0
+      volumesPerServer: 4
+      size: 1Gi
+
+  metrics:
+    enabled: true
+    port: 9000
+    protocol: https
+  certificate:
+    requestAutoCert: false

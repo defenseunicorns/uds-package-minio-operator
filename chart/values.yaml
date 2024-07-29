@@ -1,0 +1,11 @@
+minio:
+  displayName: uds-minio-dev
+  identityOpenidClaimName: groups #policy
+  identityOpenidClientId: uds-minio-sso
+  identityOpenidClientSecret: UpdD4pN6omB7JmjQU0piKjuPKU2fujbq
+  identityOpenidConfigUrl:  https://sso.uds.dev/realms/uds/.well-known/openid-configuration
+  identityOpenidScopes: openid,groups #,email,profile
+  identityOpenidRedirectUriDynamic: on
+  rootPassword: minio123
+  rootUser: minio
+

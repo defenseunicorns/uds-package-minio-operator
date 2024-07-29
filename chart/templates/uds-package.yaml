@@ -2,14 +2,42 @@ apiVersion: uds.dev/v1alpha1
 kind: Package
 metadata:
   name: "minio-operator"
-  namespace: "minio-operator"
+  namespace: {{ .Release.Namespace }}
 spec:
   network:
-    expose: []
+    expose:       
+      - service: console
+        selector:
+          app.kubernetes.io/instance: minio-operator-console
+        host: minio-operator-console
+        gateway: admin
+        port: 9090
+      - service: sts
+        selector:
+          app.kubernetes.io/name: operator
+        host: minio-sts
+        gateway: tenant
+        port: 4223
     allow:
+
+    # TODO @zachariahmiller narrow down and add "custom" rules template
+      - direction: Ingress
+        remoteGenerated: Anywhere
+      - direction: Egress
+        remoteGenerated: Anywhere
       - direction: Ingress
         remoteGenerated: IntraNamespace
       - direction: Egress
         remoteGenerated: IntraNamespace
-      - direction: Egress
-        remoteGenerated: Anywhere
+      # - direction: Egress
+      #   selector:
+      #     app.kubernetes.io/name: operator 
+      #   remoteGenerated: KubeAPI
+      # - direction: Ingress
+      #   remoteNamespace: monitoring
+      #   remoteSelector:
+      #     app: prometheus
+      #   selector:
+      #     app: minio
+      #   port: 9000
+      #   description: "Registry Service Monitor"

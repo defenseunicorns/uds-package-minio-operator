@@ -1,0 +1,38 @@
+apiVersion: uds.dev/v1alpha1
+kind: Package
+metadata:
+  name: "minio"
+  namespace: "minio"
+spec:
+  network:
+    expose:
+      - service: uds-minio-dev-hl
+        selector:
+          v1.min.io/tenant: uds-minio-dev
+          # v1.min.io/tenant: uds-minio-dev
+        host: minio
+        gateway: tenant
+        port: 9000
+      - service: uds-minio-dev-console
+        selector:
+          v1.min.io/tenant: uds-minio-dev
+        host: minio-console
+        gateway: tenant
+        port: 9090
+    allow:
+      - direction: Ingress
+        remoteGenerated: IntraNamespace
+      - direction: Egress
+        remoteGenerated: IntraNamespace
+      - direction: Egress
+        remoteGenerated: Anywhere
+      - direction: Ingress
+        remoteGenerated: Anywhere
+      - direction: Ingress
+        remoteNamespace: monitoring
+        remoteSelector:
+          app: prometheus
+        selector:
+          app: minio
+        port: 9000
+        description: "Registry Service Monitor"

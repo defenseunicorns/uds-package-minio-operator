@@ -36,3 +36,5 @@ components:
       - quay.io/minio/operator:v5.0.15
       - minio/mc:latest
       - quay.io/minio/minio:RELEASE.2024-05-01T01-11-10Z
+
+

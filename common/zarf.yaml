@@ -19,6 +19,13 @@ components:
         namespace: minio-operator
         valuesFiles:
           - ../values/common-values.yaml
+      - name: minio-tenant
+        version: v5.0.15
+        url: https://github.com/minio/operator.git
+        gitPath: helm/tenant/
+        namespace: minio
+        valuesFiles:
+          - ../values/tenant-values.yaml
     actions:
       onDeploy:
         after:
@@ -30,4 +37,4 @@ components:
                 name: minio-operator
                 namespace: minio-operator
                 condition: "'{.status.phase}'=Ready"
-        # TODO add one of these for the tenant
+        # TODO add one of these for the tenant CR to be ready
