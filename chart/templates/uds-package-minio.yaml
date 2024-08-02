@@ -1,38 +1,68 @@
 apiVersion: uds.dev/v1alpha1
 kind: Package
 metadata:
-  name: "minio"
-  namespace: "minio"
+  name: minio
+  namespace: minio
 spec:
+  monitor: 
+    - selector:
+        v1.min.io/tenant: {{ .Values.minio.displayName }}
+      portName: http-minio
+      targetPort: 9000
+      description: "Metrics"
+      path: /minio/v2/metrics/cluster
   network:
     expose:
-      - service: uds-minio-dev-hl
+      - service: {{ .Values.minio.displayName }}-hl
         selector:
-          v1.min.io/tenant: uds-minio-dev
+          v1.min.io/tenant: {{ .Values.minio.displayName }}
           # v1.min.io/tenant: uds-minio-dev
         host: minio
         gateway: tenant
         port: 9000
-      - service: uds-minio-dev-console
+      - service: {{ .Values.minio.displayName }}-console
         selector:
-          v1.min.io/tenant: uds-minio-dev
+          v1.min.io/tenant: {{ .Values.minio.displayName }}
         host: minio-console
         gateway: tenant
         port: 9090
     allow:
-      - direction: Ingress
-        remoteGenerated: IntraNamespace
       - direction: Egress
-        remoteGenerated: IntraNamespace
-      - direction: Egress
-        remoteGenerated: Anywhere
-      - direction: Ingress
-        remoteGenerated: Anywhere
-      - direction: Ingress
-        remoteNamespace: monitoring
-        remoteSelector:
-          app: prometheus
         selector:
-          app: minio
-        port: 9000
-        description: "Registry Service Monitor"
+          v1.min.io/tenant: {{ .Values.minio.displayName }}
+        remoteGenerated: KubeAPI
+
+      # Webservice Netpols
+      - direction: Egress
+        remoteNamespace: keycloak
+        remoteSelector:
+          app.kubernetes.io/name: keycloak
+        selector:
+          v1.min.io/tenant: {{ .Values.minio.displayName }}
+        port: 8080
+        description: "SSO Internal"
+
+      - direction: Egress
+        remoteNamespace: istio-tenant-gateway
+        remoteSelector:
+          app: tenant-ingressgateway
+        selector:
+          v1.min.io/tenant: {{ .Values.minio.displayName }}
+        port: 443
+        description: "SSO External"
+      - direction: Ingress
+        remoteGenerated: IntraNamespace
+      - direction: Egress
+        remoteGenerated: IntraNamespace
+      - direction: Egress
+        remoteGenerated: Anywhere
+      - direction: Ingress
+        remoteGenerated: Anywhere
+      - direction: Ingress
+      #   remoteNamespace: monitoring
+        # remoteSelector:
+        #   app: prometheus
+        # selector:
+        #   app: minio
+        # port: 9000
+        # description: "Registry Service Monitor"

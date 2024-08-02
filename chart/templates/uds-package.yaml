@@ -19,25 +19,41 @@ spec:
         gateway: tenant
         port: 4223
     allow:
-
-    # TODO @zachariahmiller narrow down and add "custom" rules template
-      - direction: Ingress
-        remoteGenerated: Anywhere
-      - direction: Egress
-        remoteGenerated: Anywhere
-      - direction: Ingress
-        remoteGenerated: IntraNamespace
-      - direction: Egress
-        remoteGenerated: IntraNamespace
-      # - direction: Egress
-      #   selector:
-      #     app.kubernetes.io/name: operator 
-      #   remoteGenerated: KubeAPI
       # - direction: Ingress
-      #   remoteNamespace: monitoring
+      #   remoteNamespace: minio
       #   remoteSelector:
-      #     app: prometheus
+      #     v1.min.io/tenant: uds-minio-dev
       #   selector:
-      #     app: minio
-      #   port: 9000
-      #   description: "Registry Service Monitor"
+      #     app.kubernetes.io/name: operator
+      #   port: 4221
+      #   description: "ingress from tenant"
+    # # TODO @zachariahmiller narrow down and add "custom" rules template
+      - direction: Ingress
+        remoteGenerated: Anywhere
+      - direction: Egress
+        remoteGenerated: Anywhere
+      - direction: Ingress
+        remoteGenerated: IntraNamespace
+      - direction: Egress
+        remoteGenerated: IntraNamespace
+      - direction: Egress
+        selector:
+          app.kubernetes.io/name: operator 
+        remoteGenerated: KubeAPI
+
+
+      # Custom rules for unanticipated scenarios
+      {{- range .Values.custom }}
+      - direction: {{ .direction }}
+        selector:
+          {{ .selector | toYaml | nindent 10 }}
+        {{- if not .remoteGenerated }}
+        remoteNamespace: {{ .remoteNamespace }}
+        remoteSelector:
+          {{ .remoteSelector | toYaml | nindent 10 }}
+        port: {{ .port }}
+        {{- else }}
+        remoteGenerated: {{ .remoteGenerated }}
+        {{- end }}
+        description: {{ .description }}
+      {{- end }}
