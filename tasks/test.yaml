@@ -10,7 +10,14 @@ tasks:
         cmd: ./uds zarf package create tests/minio --confirm --no-progress --architecture=${UDS_ARCH} --skip-sbom --no-progress
       - description: Deploy the test package into the cluster
         cmd: ./uds zarf package deploy zarf-package-minio-test-${UDS_ARCH}-0.1.0.tar.zst --confirm --no-progress
-
+      - description: Validate Test Job Completed
+        maxTotalSeconds: 300
+        wait:
+          cluster:
+            kind: Job
+            name: minio-job
+            namespace: minio
+            condition: "'{.status.phase}'=Ready"
 
   - name: health-check
     actions:

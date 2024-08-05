@@ -29,13 +29,11 @@ spec:
               secretKeyRef:
                 name: minio
                 key: rootUser
-                namespace: minio
           - name: MINIO_SECRET_KEY
             valueFrom:
               secretKeyRef:
                 name: minio
                 key: rootPassword
-                namespace: minio
         volumeMounts:
           - name: config-volume
             mountPath: /tmp
