@@ -23,3 +23,13 @@ packages:
                 secretName: minio
                 secretIDKey: rootUser
                 secretPasswordKey: rootPassword
+            - path: custom
+              value:
+                - direction: Ingress
+                  selector:
+                    app: minio
+                  remoteNamespace: mc-cli
+                  remoteSelector:
+                    job-name: minio-job
+                  port: 9000
+                  description: "Ingress from Valkey CLI (for tests)"

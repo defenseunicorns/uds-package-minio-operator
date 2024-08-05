@@ -5,7 +5,8 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   network:
-    expose:       
+    expose:
+    # NOTE: operator console removed in 6.0.0
       - service: console
         selector:
           app.kubernetes.io/instance: minio-operator-console
@@ -19,41 +20,25 @@ spec:
         gateway: tenant
         port: 4223
     allow:
-      # - direction: Ingress
-      #   remoteNamespace: minio
-      #   remoteSelector:
-      #     v1.min.io/tenant: uds-minio-dev
-      #   selector:
-      #     app.kubernetes.io/name: operator
-      #   port: 4221
-      #   description: "ingress from tenant"
-    # # TODO @zachariahmiller narrow down and add "custom" rules template
-      - direction: Ingress
-        remoteGenerated: Anywhere
+      # TODO @zachariahmiller Is this actually needed?
       - direction: Egress
-        remoteGenerated: Anywhere
+        remoteNamespace: minio
+        remoteSelector:
+          v1.min.io/tenant: {{ .Values.minio.displayName }}
+        selector:
+          app.kubernetes.io/name: operator
+        description: "Egress to tenant"
+      # TODO @zachariahmiller Is this actually needed?
       - direction: Ingress
-        remoteGenerated: IntraNamespace
-      - direction: Egress
-        remoteGenerated: IntraNamespace
+        remoteNamespace: minio
+        remoteSelector:
+          v1.min.io/tenant: {{ .Values.minio.displayName }}
+        selector:
+          app.kubernetes.io/name: operator
+        #port: 80
+        description: "Ingress from tenant"
+
       - direction: Egress
         selector:
           app.kubernetes.io/name: operator 
         remoteGenerated: KubeAPI
-
-
-      # Custom rules for unanticipated scenarios
-      {{- range .Values.custom }}
-      - direction: {{ .direction }}
-        selector:
-          {{ .selector | toYaml | nindent 10 }}
-        {{- if not .remoteGenerated }}
-        remoteNamespace: {{ .remoteNamespace }}
-        remoteSelector:
-          {{ .remoteSelector | toYaml | nindent 10 }}
-        port: {{ .port }}
-        {{- else }}
-        remoteGenerated: {{ .remoteGenerated }}
-        {{- end }}
-        description: {{ .description }}
-      {{- end }}

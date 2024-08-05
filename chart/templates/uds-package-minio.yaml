@@ -32,7 +32,17 @@ spec:
           v1.min.io/tenant: {{ .Values.minio.displayName }}
         remoteGenerated: KubeAPI
 
-      # Webservice Netpols
+      # TODO @zachariahmiller Is this actually needed?
+      - direction: Ingress
+        remoteNamespace: minio-operator
+        remoteSelector:
+          app.kubernetes.io/name: operator
+        selector:
+          v1.min.io/tenant: {{ .Values.minio.displayName }}
+        description: "Ingress from operator"
+
+      {{- if .Values.sso.enabled }}
+      # SSO
       - direction: Egress
         remoteNamespace: keycloak
         remoteSelector:
@@ -50,12 +60,29 @@ spec:
           v1.min.io/tenant: {{ .Values.minio.displayName }}
         port: 443
         description: "SSO External"
-      - direction: Ingress
-        remoteGenerated: IntraNamespace
-      - direction: Egress
-        remoteGenerated: IntraNamespace
-      - direction: Egress
-        remoteGenerated: Anywhere
-      - direction: Ingress
-        remoteGenerated: Anywhere
-      - direction: Ingress
+      {{- end }}
+      # - direction: Ingress
+      #   remoteGenerated: IntraNamespace
+      # - direction: Egress
+      #   remoteGenerated: IntraNamespace
+      # - direction: Egress
+      #   remoteGenerated: Anywhere
+      # - direction: Ingress
+      #   remoteGenerated: Anywhere
+      # - direction: Ingress
+
+      # Custom rules for unanticipated scenarios
+      {{- range .Values.custom }}
+      - direction: {{ .direction }}
+        selector:
+          {{ .selector | toYaml | nindent 10 }}
+        {{- if not .remoteGenerated }}
+        remoteNamespace: {{ .remoteNamespace }}
+        remoteSelector:
+          {{ .remoteSelector | toYaml | nindent 10 }}
+        port: {{ .port }}
+        {{- else }}
+        remoteGenerated: {{ .remoteGenerated }}
+        {{- end }}
+        description: {{ .description }}
+      {{- end }}
