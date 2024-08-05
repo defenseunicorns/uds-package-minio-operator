@@ -2,9 +2,9 @@ tasks:
   - name: all
     actions:
       - task: health-check
-      - task: setup-object-stores
+      - task: setup-bucket
 
-  - name: setup-object-stores
+  - name: setup-bucket
     actions:
       - description: Create the data store test package for the Minio instance
         cmd: ./uds zarf package create tests/minio --confirm --no-progress --architecture=${UDS_ARCH} --skip-sbom --no-progress
@@ -28,5 +28,20 @@ tasks:
             name: app=minio
             namespace: minio
             condition: Ready
-
+      - description: Wait for console to be available
+        maxTotalSeconds: 15
+        wait:
+          # wait for a network address to return a 200 OK response
+          network:
+            protocol: https
+            address: minio-console.uds.dev
+            code: 200
+      - description: Wait for the operator console to be available
+        maxTotalSeconds: 15
+        wait:
+          # wait for a network address to return a 200 OK response
+          network:
+            protocol: https
+            address: minio-operator-console.admin.uds.dev
+            code: 200        
 # TODO add playwright tests for ui + sso once sso is fully automatable in CI
