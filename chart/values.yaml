@@ -10,7 +10,7 @@ minio:
   rootPassword:
   rootUser: minio
 
-# sso disabled until we can define the protocol mappers via sso secret 
+# sso disabled until we can define the protocol mappers via sso secret
 # or update the uds-core keycloak image
 sso:
   enabled: false
