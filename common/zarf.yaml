@@ -54,14 +54,21 @@ components:
                 namespace: minio
                 condition: "'{.status.phase}'=Ready"
           # This check works but seems to take a lot longer than it takes for the tenant to actually be available for use      
-          - description: Validate Minio Tenant CR
-            maxTotalSeconds: 300
+          # - description: Validate Minio Tenant CR
+          #   maxTotalSeconds: 300
+          #   wait:
+          #     cluster:
+          #       kind: Tenant
+          #       name: ${ZARF_VAR_TENANT}
+          #       namespace: minio
+          #       condition: "'{.status.healthStatus}'=green"
+          - description: Minio App/Tenant Status
             wait:
               cluster:
-                kind: Tenant
-                name: ${ZARF_VAR_TENANT}
+                kind: pod
+                name: app=minio
                 namespace: minio
-                condition: "'{.status.healthStatus}'=green"
+                condition: Ready
           - description: Wait for console to be available
             maxTotalSeconds: 15
             wait:
