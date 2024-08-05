@@ -59,10 +59,3 @@ spec:
       - direction: Ingress
         remoteGenerated: Anywhere
       - direction: Ingress
-      #   remoteNamespace: monitoring
-        # remoteSelector:
-        #   app: prometheus
-        # selector:
-        #   app: minio
-        # port: 9000
-        # description: "Registry Service Monitor"

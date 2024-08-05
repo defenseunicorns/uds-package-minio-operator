@@ -1,0 +1,4 @@
+operator:
+  image:
+    repository: registry1.dso.mil/ironbank/opensource/minio/operator
+    tag: v5.0.15

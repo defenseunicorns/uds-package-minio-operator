@@ -11,7 +11,6 @@ variables:
   - name: DOMAIN
     default: uds.dev
 
-
 components:
   - name: minio-operator
     required: false
@@ -26,6 +25,9 @@ components:
       - name: minio-operator
         valuesFiles:
           - values/registry1-values.yaml
+      - name: minio-tenant
+        valuesFiles:
+          - values/registry1-tenant-values.yaml
     images:
       - registry1.dso.mil/ironbank/opensource/minio/operator:v5.0.15
       - registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2024-07-08T20-59-24Z
@@ -46,5 +48,3 @@ components:
       - quay.io/minio/operator:v5.0.15
       - minio/mc:latest
       - quay.io/minio/minio:RELEASE.2024-05-01T01-11-10Z
-
-

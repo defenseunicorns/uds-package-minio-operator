@@ -1,10 +1,5 @@
 tenant:
   name: ###ZARF_VAR_TENANT###
-
-
-  imagePullSecret: { }
-  scheduler: { }
-
   configuration:
     name: ###ZARF_VAR_TENANT###
     existingSecret: true

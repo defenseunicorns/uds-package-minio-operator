@@ -50,5 +50,5 @@ tasks:
           network:
             protocol: https
             address: minio-operator-console.admin.uds.dev
-            code: 200        
+            code: 200
 # TODO add playwright tests for ui + sso once sso is fully automatable in CI
