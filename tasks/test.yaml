@@ -2,13 +2,31 @@ tasks:
   - name: all
     actions:
       - task: health-check
+      - task: setup-object-stores
+
+  - name: setup-object-stores
+    actions:
+      - description: Create the data store test package for the Minio instance
+        cmd: ./uds zarf package create tests/minio --confirm --no-progress --architecture=${UDS_ARCH} --skip-sbom --no-progress
+      - description: Deploy the test package into the cluster
+        cmd: ./uds zarf package deploy zarf-package-minio-test-${UDS_ARCH}-0.1.0.tar.zst --confirm --no-progress
+
 
   - name: health-check
     actions:
-      - description: Minio Health Check
+      - description: Minio Operator Health Check
         wait:
           cluster:
             kind: Deployment
             name: minio-operator
-            namespace: minio
+            namespace: minio-operator
             condition: Available
+      - description: Minio App/Tenant Status
+        wait:
+          cluster:
+            kind: pod
+            name: app=minio
+            namespace: minio
+            condition: Ready
+
+# TODO add playwright tests for ui + sso once sso is fully automatable in CI

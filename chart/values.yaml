@@ -2,7 +2,7 @@ minio:
   displayName: minio
   identityOpenidClaimName: policy
   identityOpenidClientId: minio
-  identityOpenidClientSecret: UpdD4pN6omB7JmjQU0piKjuPKU2fujbq
+  identityOpenidClientSecret: "exampleClientSecret"
   identityOpenidConfigUrl:
   identityOpenidScopes: openid
   identityOpenidRedirectUriDynamic: on
@@ -10,5 +10,13 @@ minio:
   rootPassword:
   rootUser: minio
 
+sso:
+  enabled: false
+copyPassword:
+  enabled: false
+  namespace: ""
+  secretName: ""
+  secretKey: ""
 
+custom: []
 

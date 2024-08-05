@@ -11,6 +11,7 @@ This package is designed for use as part of a bundle deployed on [UDS Core](http
 | Flavor | Description | Example Creation |
 | ------ | ----------- | ---------------- |
 | upstream | Uses upstream images within the package. | `zarf package create . -f upstream` |
+| registry1 | Uses registry1 images within the package. | `zarf package create . -f registry1` |
 
 ## Releases
 

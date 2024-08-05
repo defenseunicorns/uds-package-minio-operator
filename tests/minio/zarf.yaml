@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/defenseunicorns/zarf/main/zarf.schema.json
+kind: ZarfPackageConfig
+metadata:
+  name: minio-test
+  description: "A test that minio can be connected to and is functional"
+  version: 0.1.0
+
+components:
+  - name: test-minio-connectivity
+    required: true
+    manifests:
+      - name: mc-cli
+        namespace: mc-cli
+        files:
+          - uds-package.yaml
+          - mc-cli.yaml
+    images:
+      - minio/mc:latest

@@ -1,0 +1,15 @@
+apiVersion: uds.dev/v1alpha1
+kind: Package
+metadata:
+  name: mc-cli
+  namespace: mc-cli
+spec:
+  network:
+    allow: 
+      - direction: Egress
+        selector:
+          job-name: minio-job  
+        remoteNamespace: minio
+        remoteSelector:
+          app: minio
+        description: "Egress from minio CLI (for tests)"

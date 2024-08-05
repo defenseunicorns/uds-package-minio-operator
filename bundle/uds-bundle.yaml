@@ -12,3 +12,14 @@ packages:
     # x-release-please-start-version
     ref: 5.0.15-uds.0
     # x-release-please-end
+    overrides:
+      minio-operator:
+        uds-minio-config:
+          values:
+            - path: copyPassword
+              value:
+                enabled: true
+                namespace: mc-cli
+                secretName: minio
+                secretIDKey: rootUser
+                secretPasswordKey: rootPassword

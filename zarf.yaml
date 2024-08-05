@@ -28,7 +28,7 @@ components:
           - values/registry1-values.yaml
     images:
       - registry1.dso.mil/ironbank/opensource/minio/operator:v5.0.15
-      - registry1.dso.mil/ironbank/opensource/minio/mc:latest
+      - registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2024-07-08T20-59-24Z
       - registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2024-05-01T01-11-10Z
 
   - name: minio-operator
