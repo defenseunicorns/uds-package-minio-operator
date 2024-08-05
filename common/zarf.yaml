@@ -56,7 +56,7 @@ components:
                 name: minio
                 namespace: minio
                 condition: "'{.status.phase}'=Ready"
-          # This check works but seems to take a lot longer than it takes for the tenant to actually be available for use      
+          # This check works but seems to take a lot longer than it takes for the tenant to actually be available for use
           # - description: Validate Minio Tenant CR
           #   maxTotalSeconds: 300
           #   wait:
@@ -87,4 +87,4 @@ components:
               network:
                 protocol: https
                 address: minio-operator-console.admin.${ZARF_VAR_DOMAIN}
-                code: 200                
+                code: 200

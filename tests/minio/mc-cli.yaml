@@ -7,36 +7,36 @@ spec:
   template:
     spec:
       containers:
-      - name: minio-client
-        image: minio/mc
-        command: ["/bin/sh", "-c"]
-        args:
-          - |
-            BN="mybucket$(date +%s)"
-            mc alias set myminio $MINIO_SERVER $MINIO_ACCESS_KEY $MINIO_SECRET_KEY &&
-            mc mb myminio/$BN &&
-            echo "Hello from Kubernetes Job!" > /tmp/hello.txt &&
-            mc cp /tmp/hello.txt myminio/$BN/hello.txt &&
-            mc cp myminio/$BN/hello.txt /tmp/downloaded_hello.txt &&
-            echo "Bucket, upload, and download operations completed successfully"
-        env:
-          - name: MINIO_SERVER
-            value: "http://uds-minio-hl.minio.svc.cluster.local:9000"
-          - name: MC_CONFIG_DIR
-            value: "/tmp/mc/"
-          - name: MINIO_ACCESS_KEY
-            valueFrom:
-              secretKeyRef:
-                name: minio
-                key: rootUser
-          - name: MINIO_SECRET_KEY
-            valueFrom:
-              secretKeyRef:
-                name: minio
-                key: rootPassword
-        volumeMounts:
-          - name: config-volume
-            mountPath: /tmp
+        - name: minio-client
+          image: minio/mc
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              BN="mybucket$(date +%s)"
+              mc alias set myminio $MINIO_SERVER $MINIO_ACCESS_KEY $MINIO_SECRET_KEY &&
+              mc mb myminio/$BN &&
+              echo "Hello from Kubernetes Job!" > /tmp/hello.txt &&
+              mc cp /tmp/hello.txt myminio/$BN/hello.txt &&
+              mc cp myminio/$BN/hello.txt /tmp/downloaded_hello.txt &&
+              echo "Bucket, upload, and download operations completed successfully"
+          env:
+            - name: MINIO_SERVER
+              value: "http://uds-minio-hl.minio.svc.cluster.local:9000"
+            - name: MC_CONFIG_DIR
+              value: "/tmp/mc/"
+            - name: MINIO_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio
+                  key: rootUser
+            - name: MINIO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio
+                  key: rootPassword
+          volumeMounts:
+            - name: config-volume
+              mountPath: /tmp
       restartPolicy: Never
       volumes:
         - name: config-volume

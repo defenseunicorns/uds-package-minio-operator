@@ -16,8 +16,8 @@ tasks:
           cluster:
             kind: Job
             name: minio-job
-            namespace: minio
-            condition: "'{.status.phase}'=Ready"
+            namespace: mc-cli
+            condition: "'{.status.succeeded}'=1"
 
   - name: health-check
     actions:

@@ -5,10 +5,10 @@ metadata:
   namespace: mc-cli
 spec:
   network:
-    allow: 
+    allow:
       - direction: Egress
         selector:
-          job-name: minio-job  
+          job-name: minio-job
         remoteNamespace: minio
         remoteSelector:
           app: minio
