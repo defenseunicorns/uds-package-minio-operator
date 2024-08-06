@@ -1,6 +1,6 @@
 # Configuration
 
-Minio configured through the upstream [Minio Operator and Tenat charts](https://github.com/minio/operator/tree/master/helm) as well as a UDS configuration chart that supports the following:
+Minio is configured through the upstream [Minio Operator and Tenat charts](https://github.com/minio/operator/tree/master/helm) as well as a UDS configuration chart that supports the following:
 
 ## Networking
 
