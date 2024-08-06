@@ -1,4 +1,0 @@
-tenant:
-  image:
-    repository: registry1.dso.mil/ironbank/opensource/minio/minio
-    tag: RELEASE.2024-05-01T01-11-10Z

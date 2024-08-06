@@ -3,7 +3,7 @@ kind: ZarfPackageConfig
 metadata:
   name: minio-operator
   description: "UDS Minio Operator Package"
-  version: 5.0.15-uds.0
+  version: 6.0.1-uds.0
 
 variables:
   - name: TENANT
@@ -12,26 +12,7 @@ variables:
     default: uds.dev
 
 components:
-  - name: minio-operator
-    required: false
-    default: true
-    import:
-      path: common
-    only:
-      flavor: registry1
-      cluster:
-        architecture: amd64
-    charts:
-      - name: minio-operator
-        valuesFiles:
-          - values/registry1-values.yaml
-      - name: minio-tenant
-        valuesFiles:
-          - values/registry1-tenant-values.yaml
-    images:
-      - registry1.dso.mil/ironbank/opensource/minio/operator:v5.0.15
-      - registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2024-07-08T20-59-24Z
-      - registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2024-05-01T01-11-10Z
+
 
   - name: minio-operator
     required: false
@@ -44,7 +25,11 @@ components:
       - name: minio-operator
         valuesFiles:
           - values/upstream-values.yaml
+      - name: minio-tenant
+        valuesFiles:
+          - values/upstream-tenant-values.yaml
     images:
-      - quay.io/minio/operator:v5.0.15
-      - minio/mc:RELEASE.2024-06-05T18-13-30Z
-      - quay.io/minio/minio:RELEASE.2024-05-01T01-11-10Z
+      - quay.io/minio/operator:v6.0.1
+      - minio/mc:RELEASE.2024-07-11T18-01-28Z
+      - quay.io/minio/minio:RELEASE.2024-07-16T23-46-41Z
+      - quay.io/minio/operator-sidecar:v6.0.0

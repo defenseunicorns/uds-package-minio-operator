@@ -7,12 +7,12 @@ spec:
   network:
     expose:
     # NOTE: operator console removed in 6.0.0
-      - service: console
-        selector:
-          app.kubernetes.io/instance: minio-operator-console
-        host: minio-operator-console
-        gateway: admin
-        port: 9090
+      # - service: console
+      #   selector:
+      #     app.kubernetes.io/instance: minio-operator-console
+      #   host: minio-operator-console
+      #   gateway: admin
+      #   port: 9090
       - service: sts
         selector:
           app.kubernetes.io/name: operator

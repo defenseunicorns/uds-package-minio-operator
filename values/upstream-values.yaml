@@ -1,9 +1,9 @@
 operator:
   image:
     repository: quay.io/minio/operator
-    tag: v5.0.15
+    tag: v6.0.0
 # Note Operator console is deprecated and removed on next major release (6.0.0)
-console:
-  image:
-    repository: quay.io/minio/operator
-    tag: v5.0.15
+# console:
+#   image:
+#     repository: quay.io/minio/operator
+#     tag: v6.0.0

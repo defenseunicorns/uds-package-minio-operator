@@ -3,14 +3,14 @@ metadata:
   name: minio-test
   description: A UDS Bundle for minio operator (+tenant)
   # x-release-please-start-version
-  version: 0.0.1
+  version: 0.1.0
   # x-release-please-end
 
 packages:
   - name: minio-operator
     path: ../
     # x-release-please-start-version
-    ref: 5.0.15-uds.0
+    ref: 6.0.0-uds.0
     # x-release-please-end
     overrides:
       minio-operator:
