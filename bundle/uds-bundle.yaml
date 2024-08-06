@@ -32,4 +32,4 @@ packages:
                   remoteSelector:
                     job-name: minio-job
                   port: 9000
-                  description: "Ingress from Valkey CLI (for tests)"
+                  description: "Ingress from Minio CLI (for tests)"
