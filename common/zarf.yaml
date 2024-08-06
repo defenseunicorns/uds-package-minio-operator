@@ -14,7 +14,7 @@ components:
         localPath: ../chart
         variables:
           - name: TENANT
-            path: minio.displayName
+            path: name
             description: The name of the tenant
       - name: minio-operator
         version: v5.0.15

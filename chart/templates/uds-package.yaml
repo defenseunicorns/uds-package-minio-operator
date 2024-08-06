@@ -24,7 +24,7 @@ spec:
       - direction: Egress
         remoteNamespace: minio
         remoteSelector:
-          v1.min.io/tenant: {{ .Values.minio.displayName }}
+          v1.min.io/tenant: {{ .Values.name }}
         selector:
           app.kubernetes.io/name: operator
         description: "Egress to tenant"
@@ -32,7 +32,7 @@ spec:
       - direction: Ingress
         remoteNamespace: minio
         remoteSelector:
-          v1.min.io/tenant: {{ .Values.minio.displayName }}
+          v1.min.io/tenant: {{ .Values.name }}
         selector:
           app.kubernetes.io/name: operator
         #port: 80

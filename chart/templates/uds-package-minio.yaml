@@ -6,30 +6,30 @@ metadata:
 spec:
   monitor: 
     - selector:
-        v1.min.io/tenant: {{ .Values.minio.displayName }}
+        v1.min.io/tenant: {{ .Values.name }}
       portName: http-minio
       targetPort: 9000
       description: "Metrics"
       path: /minio/v2/metrics/cluster
   network:
     expose:
-      - service: {{ .Values.minio.displayName }}-hl
+      - service: {{ .Values.name }}-hl
         selector:
-          v1.min.io/tenant: {{ .Values.minio.displayName }}
+          v1.min.io/tenant: {{ .Values.name }}
           # v1.min.io/tenant: uds-minio-dev
         host: minio
         gateway: tenant
         port: 9000
-      - service: {{ .Values.minio.displayName }}-console
+      - service: {{ .Values.name }}-console
         selector:
-          v1.min.io/tenant: {{ .Values.minio.displayName }}
+          v1.min.io/tenant: {{ .Values.name }}
         host: minio-console
         gateway: tenant
         port: 9090
     allow:
       - direction: Egress
         selector:
-          v1.min.io/tenant: {{ .Values.minio.displayName }}
+          v1.min.io/tenant: {{ .Values.name }}
         remoteGenerated: KubeAPI
 
       # TODO @zachariahmiller Is this actually needed?
@@ -38,7 +38,7 @@ spec:
         remoteSelector:
           app.kubernetes.io/name: operator
         selector:
-          v1.min.io/tenant: {{ .Values.minio.displayName }}
+          v1.min.io/tenant: {{ .Values.name }}
         description: "Ingress from operator"
 
       {{- if .Values.sso.enabled }}
@@ -48,7 +48,7 @@ spec:
         remoteSelector:
           app.kubernetes.io/name: keycloak
         selector:
-          v1.min.io/tenant: {{ .Values.minio.displayName }}
+          v1.min.io/tenant: {{ .Values.name }}
         port: 8080
         description: "SSO Internal"
 
@@ -57,7 +57,7 @@ spec:
         remoteSelector:
           app: tenant-ingressgateway
         selector:
-          v1.min.io/tenant: {{ .Values.minio.displayName }}
+          v1.min.io/tenant: {{ .Values.name }}
         port: 443
         description: "SSO External"
       {{- end }}

@@ -6,3 +6,4 @@ tmp
 .idea/
 *.tar.zst
 zarf-sbom
+job.yaml
