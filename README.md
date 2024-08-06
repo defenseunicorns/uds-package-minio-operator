@@ -1,10 +1,14 @@
-# 🏭 UDS Minio-operator Package
+# 🏭 UDS Minio Operator Package
 
 [![Latest Release](https://img.shields.io/github/v/release/defenseunicorns/uds-package-minio-operator)](https://github.com/defenseunicorns/uds-package-minio-operator/releases)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/defenseunicorns/uds-package-minio-operator/tag-and-release.yaml)](https://github.com/defenseunicorns/uds-package-minio-operator/actions/workflows/tag-and-release.yaml)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/defenseunicorns/uds-package-minio-operator/badge)](https://api.securityscorecards.dev/projects/github.com/defenseunicorns/uds-package-minio-operator)
 
-This package is designed for use as part of a bundle deployed on [UDS Core](https://github.com/defenseunicorns/uds-core).
+
+> [!WARNING]  
+> `uds-package-minio-operator` is in early alpha and is not ready for general consumption.
+
+This package is designed for use as part of a [UDS Software Factory](https://github.com/defenseunicorns/uds-software-factory) bundle deployed on [UDS Core](https://github.com/defenseunicorns/uds-core).
 
 ## Flavors
 

@@ -18,6 +18,6 @@ copyPassword:
   enabled: false
   namespace: ""
   secretName: ""
-  secretKey: ""
-
+  secretIDKey: 
+  secretPasswordKey: 
 custom: []

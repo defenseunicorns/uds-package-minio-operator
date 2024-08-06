@@ -61,15 +61,6 @@ spec:
         port: 443
         description: "SSO External"
       {{- end }}
-      # - direction: Ingress
-      #   remoteGenerated: IntraNamespace
-      # - direction: Egress
-      #   remoteGenerated: IntraNamespace
-      # - direction: Egress
-      #   remoteGenerated: Anywhere
-      # - direction: Ingress
-      #   remoteGenerated: Anywhere
-      # - direction: Ingress
 
       # Custom rules for unanticipated scenarios
       {{- range .Values.custom }}
