@@ -1,7 +1,7 @@
 tasks:
   - name: all
     actions:
-      - task: health-check
+      - task: ingress
       - task: setup-bucket
 
   - name: setup-bucket
@@ -19,22 +19,8 @@ tasks:
             namespace: mc-cli
             condition: "'{.status.succeeded}'=1"
 
-  - name: health-check
+  - name: ingress
     actions:
-      - description: Minio Operator Health Check
-        wait:
-          cluster:
-            kind: Deployment
-            name: minio-operator
-            namespace: minio-operator
-            condition: Available
-      - description: Minio App/Tenant Status
-        wait:
-          cluster:
-            kind: pod
-            name: app=minio
-            namespace: minio
-            condition: Ready
       - description: Wait for console to be available
         maxTotalSeconds: 15
         wait:

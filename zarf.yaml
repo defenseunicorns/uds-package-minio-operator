@@ -46,5 +46,5 @@ components:
           - values/upstream-values.yaml
     images:
       - quay.io/minio/operator:v5.0.15
-      - minio/mc:latest
+      - minio/mc:RELEASE.2024-06-05T18-13-30Z
       - quay.io/minio/minio:RELEASE.2024-05-01T01-11-10Z

@@ -55,10 +55,9 @@ tasks:
   - name: test-upgrade
     description: Test an upgrade from the latest released package to the current branch
     actions:
-      - cmd: echo "No upgrade test until after initial release is published"
-      # - task: create-latest-release-bundle
-      # - task: setup:k3d-test-cluster
-      # - task: deploy:test-bundle
-      # - task: create-test-bundle
-      # - task: deploy:test-bundle
-      # - task: test:all
+      - task: create-latest-release-bundle
+      - task: setup:k3d-test-cluster
+      - task: deploy:test-bundle
+      - task: create-test-bundle
+      - task: deploy:test-bundle
+      - task: test:all

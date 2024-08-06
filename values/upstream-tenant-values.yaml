@@ -1,0 +1,4 @@
+tenant:
+  image:
+    repository: quay.io/minio/minio
+    tag: RELEASE.2024-05-01T01-11-10Z
