@@ -17,3 +17,7 @@ Minio is currently configured to expect a single tenant using it - to enable thi
 - `copyPassword.secretName`: the name to give the Kubernetes secret in the other namespace
 - `copyPassword.secretIDKey`: the key to place the ID/user under within the Kubernetes secret
 - `copyPassword.secretPasswordKey`: the key to place the password under within the Kubernetes secret
+
+## SSO
+
+Currently SSO for minio is not fully integrated with uds-core. To enable SSO on your deployment, some additional steps are required. First follow the guide [here](https://min.io/docs/minio/macos/operations/external-iam/configure-keycloak-identity-management.html) for generating a client in keycloak with the clientid in the format of `<minio-tenant-name>-sso` and configuring the correct protocol mappers and user attribute assignments. Next, in your bundle, override `sso.enabled` in the config chart to `true` and provide the client secret via the `identityOpenidClientSecret` config chart value.
