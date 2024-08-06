@@ -39,7 +39,7 @@ jobs:
     strategy:
       matrix:
         flavor: [upstream, registry1]
-        type: [install, upgrade]
+        type: [install] #todo add upgrade after first release
 
     steps:
       - name: Checkout repository
