@@ -6,13 +6,6 @@ metadata:
 spec:
   network:
     expose:
-    # NOTE: operator console removed in 6.0.0
-      # - service: console
-      #   selector:
-      #     app.kubernetes.io/instance: minio-operator-console
-      #   host: minio-operator-console
-      #   gateway: admin
-      #   port: 9090
       - service: sts
         selector:
           app.kubernetes.io/name: operator
@@ -20,7 +13,6 @@ spec:
         gateway: tenant
         port: 4223
     allow:
-      # TODO @zachariahmiller Is this actually needed?
       - direction: Egress
         remoteNamespace: minio
         remoteSelector:
@@ -28,14 +20,12 @@ spec:
         selector:
           app.kubernetes.io/name: operator
         description: "Egress to tenant"
-      # TODO @zachariahmiller Is this actually needed?
       - direction: Ingress
         remoteNamespace: minio
         remoteSelector:
           v1.min.io/tenant: {{ .Values.name }}
         selector:
           app.kubernetes.io/name: operator
-        #port: 80
         description: "Ingress from tenant"
 
       - direction: Egress
