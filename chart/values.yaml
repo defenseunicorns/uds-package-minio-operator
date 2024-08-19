@@ -29,7 +29,7 @@ apps: []
 
 # Dev only
 copyPassword:
-  enabled: true
+  enabled: false
   password:
   namespace: 
   user: minio
