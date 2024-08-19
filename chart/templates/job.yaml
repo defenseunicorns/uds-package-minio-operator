@@ -1,0 +1,67 @@
+{{- range .Values.apps }}
+{{- $secretName := .copyPassword.secretName | default (printf "minio-%s" .name) }}
+{{- $secretIDKey := .copyPassword.secretIDKey | default "accessKey" }}
+{{- $secretPasswordKey := .copyPassword.secretPasswordKey | default "secretKey" }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .name }}-minio-setup
+  namespace: minio
+spec:
+  template:
+    spec:
+      containers:
+      - name: minio-setup
+        image: {{ $.Values.mcImage }}
+        command: ["/bin/sh", "-c"]
+        args:
+          - |
+            sleep 30s;
+            mc alias set myminio $MINIO_SERVER $MINIO_ACCESS_KEY $MINIO_SECRET_KEY;
+            {{- range $bucket := .bucketNames }}
+            mc mb myminio/{{ $bucket }};
+            {{- end }}
+            mc admin policy create myminio {{ .name }}-policy /config/policy.json;
+            mc admin user add myminio $USER $USER_SECRET;
+            mc admin policy attach myminio {{ .name }}-policy --user $USER;
+        env:
+        - name: MINIO_SERVER
+          value: "http://uds-minio-hl.minio.svc.cluster.local:9000"
+        - name: MC_CONFIG_DIR
+          value: "/tmp/mc/"
+        - name: USER
+          valueFrom:
+            secretKeyRef:
+              name: {{ $secretName }}
+              key: {{ $secretIDKey }}
+        - name: USER_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: {{ $secretName }}
+              key: {{ $secretPasswordKey }}
+        - name: MINIO_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name:  {{ $.Values.name }}-creds
+              key: rootUser
+        - name: MINIO_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name:  {{ $.Values.name }}-creds
+              key: rootPassword
+        volumeMounts:
+        volumeMounts:
+        - name: policy-config
+          mountPath: /config
+        - name: config-volume
+          mountPath: /tmp
+      restartPolicy: OnFailure
+      volumes:
+      - name: policy-config
+        configMap:
+          name: {{ .name }}-minio-policy
+      - name: config-volume
+        emptyDir: {}
+  backoffLimit: 4
+---
+{{- end }}
