@@ -16,7 +16,7 @@ spec:
       - service: {{ .Values.name }}-hl
         selector:
           v1.min.io/tenant: {{ .Values.name }}
-          # v1.min.io/tenant: uds-minio-dev
+
         host: minio
         gateway: tenant
         port: 9000
@@ -27,12 +27,16 @@ spec:
         gateway: tenant
         port: 9090
     allow:
+      # Needed for jobs that provision resources in minio from the tenant namespace
+      - direction: Ingress
+        remoteGenerated: IntraNamespace
+      - direction: Egress
+        remoteGenerated: IntraNamespace
       - direction: Egress
         selector:
           v1.min.io/tenant: {{ .Values.name }}
         remoteGenerated: KubeAPI
 
-      # TODO @zachariahmiller Is this actually needed?
       - direction: Ingress
         remoteNamespace: minio-operator
         remoteSelector:
@@ -61,6 +65,22 @@ spec:
         port: 443
         description: "SSO External"
       {{- end }}
+
+
+      # App specific netpols  
+      {{- range .Values.apps }}
+      - direction: Ingress
+        selector:
+          app: minio
+        remoteNamespace: {{ .namespace }}
+        {{ if .remoteSelector }}
+        remoteSelector:
+          {{ .remoteSelector | toYaml | nindent 10 }}
+        {{- end }}
+        port: 9000
+        description: Ingress from {{ .name }}
+      {{- end }}
+
 
       # Custom rules for unanticipated scenarios
       {{- range .Values.custom }}

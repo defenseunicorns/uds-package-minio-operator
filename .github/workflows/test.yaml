@@ -38,7 +38,7 @@ jobs:
     timeout-minutes: 25
     strategy:
       matrix:
-        flavor: [upstream]
+        flavor: [upstream, registry1]
         type: [install] #todo add upgrade after first release
 
     steps:

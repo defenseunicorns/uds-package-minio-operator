@@ -5,13 +5,6 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   network:
-    expose:
-      - service: sts
-        selector:
-          app.kubernetes.io/name: operator
-        host: minio-sts
-        gateway: tenant
-        port: 4223
     allow:
       - direction: Egress
         remoteNamespace: minio

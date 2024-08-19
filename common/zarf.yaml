@@ -17,14 +17,14 @@ components:
             path: name
             description: The name of the tenant
       - name: minio-operator
-        version: v6.0.1
+        version: v6.0.2
         url: https://github.com/minio/operator.git
         gitPath: helm/operator
         namespace: minio-operator
         valuesFiles:
           - ../values/common-values.yaml
       - name: minio-tenant
-        version: v6.0.1
+        version: v6.0.2
         url: https://github.com/minio/operator.git
         gitPath: helm/tenant/
         namespace: minio

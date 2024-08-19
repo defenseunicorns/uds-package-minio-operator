@@ -4,14 +4,37 @@ identityOpenidConfigUrl:
 domain: uds.dev
 rootPassword:
 rootUser: minio
+mcImage: minio/mc:RELEASE.2024-08-03T04-33-23Z
 # sso disabled until we can define the protocol mappers via sso secret
 # or update the uds-core keycloak image
 sso:
   enabled: false
+apps: []
+  # - name: test-app
+  #   namespace: ""
+  #   remoteSelector:
+  #     app: minio
+  #   bucketNames: 
+  #     - test-bucket
+  #     - test-bucket-2
+  #     - test-bucket-3
+  #   policy: ""
+  #   copyPassword:
+  #     enabled: true
+  #     password:
+  #     user: minio
+  #     secretName:
+  #     secretIDKey:
+  #     secretPasswordKey:
+
+# Dev only
 copyPassword:
-  enabled: false
-  namespace: ""
+  enabled: true
+  password:
+  namespace: 
+  user: minio
   secretName: ""
   secretIDKey:
   secretPasswordKey:
+
 custom: []

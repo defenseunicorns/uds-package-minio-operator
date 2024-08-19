@@ -10,12 +10,13 @@ packages:
   - name: minio-operator
     path: ../
     # x-release-please-start-version
-    ref: 6.0.1-uds.0
+    ref: 6.0.2-uds.0
     # x-release-please-end
     overrides:
       minio-operator:
         uds-minio-config:
           values:
+            # Test copy of root password (disabled by default) to be consumed by test job
             - path: copyPassword
               value:
                 enabled: true
@@ -33,3 +34,36 @@ packages:
                     job-name: minio-job
                   port: 9000
                   description: "Ingress from Minio CLI (for tests)"
+            # Test helm overrides to provision app specific buckets, policies and creds
+            - path: apps
+              value:
+                - name: mattermost
+                  namespace: mattermost
+                  remoteSelector:
+                    app: mattermost
+                  bucketNames:
+                    - mattermost-bucket
+                  policy: ""
+                  copyPassword:
+                    enabled: true
+                    password:
+                    user: mattermost
+                    secretName: ""
+                    secretIDKey: ""
+                    secretPasswordKey: ""
+                - name: test-app
+                  namespace: test-app
+                  remoteSelector:
+                    app: test-app
+                  bucketNames:
+                    - test-bucket123456
+                    - test-bucket12312515
+                    - test-bucket64574754
+                  policy: ""
+                  copyPassword:
+                    enabled: false
+                    password: glarfasd
+                    user: spinio
+                    secretName: test-secret-name
+                    secretIDKey: secret-id-key
+                    secretPasswordKey: secret-password-key

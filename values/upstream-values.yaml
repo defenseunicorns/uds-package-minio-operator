@@ -1,4 +1,8 @@
 operator:
   image:
     repository: quay.io/minio/operator
-    tag: v6.0.1
+    tag: v6.0.2
+  sidecarImage:
+    repository: quay.io/minio/operator-sidecar
+    tag: v6.0.2
+    pullPolicy: IfNotPresent

@@ -1,0 +1,9 @@
+operator:
+  image:
+    repository: registry1.dso.mil/ironbank/opensource/minio/operator
+    tag: v6.0.2
+  sidecarImage:
+    repository: registry1.dso.mil/ironbank/opensource/minio/operator-sidecar
+    tag: v6.0.2
+    digest: ""
+    pullPolicy: IfNotPresent
