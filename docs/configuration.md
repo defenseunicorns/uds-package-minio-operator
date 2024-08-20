@@ -1,16 +1,14 @@
 # Configuration
 
-Minio is configured through the upstream [Minio Operator and Tenat charts](https://github.com/minio/operator/tree/master/helm) as well as a UDS configuration chart that supports the following:
+Minio is configured through the upstream [Minio Operator and Tenant charts](https://github.com/minio/operator/tree/master/helm) as well as a UDS configuration chart that supports the following:
 
 ## Networking
 
-Network policies are controlled via the `uds-minio-config` chart in accordance with the [common patterns for networking within UDS Software Factory](https://github.com/defenseunicorns/uds-software-factory/blob/main/docs/networking.md).  Because minio does not interact with external resources like databases or object storage it only implements `custom` networking for the `minio` namespace. The custom key allows the ability to define additional network policies **only** for the tenant namespace:
-
-- `custom`: sets custom network policies for the `minio` namespace (i.e. to allow clients like GitLab to connect)
+Network policies are controlled via the `uds-minio-config` chart in accordance with the [common patterns for networking within UDS Software Factory](https://github.com/defenseunicorns/uds-software-factory/blob/main/docs/networking.md).  Because minio does not interact with external resources like databases or object storage it only implements `custom` networking for the `minio` tenant namespace. The custom key allows the ability to define additional network policies **only** for the tenant namespace.
 
 ## Storage Pools
 
-The Minio Operator package by default deploys a minimal resource footprint as to work in CI jobs and on lower resourced systems. Due to limitations with zarf variables, the size of the storage pool cannot be overridden at the package level and can only happen as a bundle override. To override the storage pool, provide a bundle override to this package following the bvelow pattern:
+The Minio Operator package by default deploys a minimal resource footprint as to work in CI jobs and on lower resourced systems. Due to limitations with Zarf variables, the size of the storage pool cannot be overridden at the package level and can only happen as a bundle override. To override the storage pool, provide a bundle override to this package following the below pattern:
 
 ```yaml
 packages:
@@ -21,7 +19,7 @@ packages:
     # x-release-please-end
     overrides:
       minio-operator:
-        uds-minio-config:
+        minio-tenant:
           values:
             - path: tenant.pools
               value:
@@ -75,11 +73,11 @@ When a given app is created as demonstrated in the previous section, one can opt
 - `copyPassword.secretName`: the name to give the Kubernetes secret in the other namespace
 - `copyPassword.secretIDKey`: the key to place the ID/user under within the Kubernetes secret
 - `copyPassword.secretPasswordKey`: the key to place the password under within the Kubernetes secret
-- `copyPassword.user`: the user or "Access Key ID" foir the scoped credential
+- `copyPassword.user`: the user or "Access Key ID" for the scoped credential
 
 ## SSO
 
-Currently SSO for minio is not fully integrated with uds-core. To enable SSO on your deployment, some additional steps are required. First follow the guide [here](https://min.io/docs/minio/macos/operations/external-iam/configure-keycloak-identity-management.html) for generating a client in keycloak with the clientid in the format of `<minio-tenant-name>-sso` and configuring the correct protocol mappers and user attribute assignments. Next, in your bundle, override `sso.enabled` in the config chart to `true` and provide the client secret via the `identityOpenidClientSecret` config chart value.
+Currently SSO for minio is not fully integrated with uds-core. To enable SSO on your deployment, some additional steps are required. First follow the [minio keycloak setup guide](https://min.io/docs/minio/macos/operations/external-iam/configure-keycloak-identity-management.html) for generating a client in keycloak with the clientid in the format of `<minio-tenant-name>-sso` and configuring the correct protocol mappers and user attribute assignments. Next, in your bundle, override `sso.enabled` in the config chart to `true` and provide the client secret via the `identityOpenidClientSecret` config chart value.
 
 ## Network Encryption
 
