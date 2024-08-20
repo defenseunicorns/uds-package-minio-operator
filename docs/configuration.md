@@ -29,7 +29,7 @@ packages:
                   size: 10Gi
 ```
 
-For more details on storage pool requirements see the [documentation](https://min.io/docs/minio/kubernetes/upstream/reference/operator-crd.html#pool).
+For more details on storage pool requirements see the [Minio documentation](https://min.io/docs/minio/kubernetes/upstream/reference/operator-crd.html#pool).
 
 ## Resource Provisioning
 
@@ -71,8 +71,8 @@ When a given app is created as demonstrated in the previous section, one can opt
 
 - `copyPassword.enabled`: enables or disables the copying of the minio credential secret to another namespace
 - `copyPassword.secretName`: the name to give the Kubernetes secret in the other namespace
-- `copyPassword.secretIDKey`: the key to place the ID/user under within the Kubernetes secret
-- `copyPassword.secretPasswordKey`: the key to place the password under within the Kubernetes secret
+- `copyPassword.secretIDKey`: the key for the Access Key ID within the Kubernetes secret
+- `copyPassword.secretPasswordKey`: the key for the password within the Kubernetes secret
 - `copyPassword.user`: the user or "Access Key ID" for the scoped credential
 
 ## SSO
