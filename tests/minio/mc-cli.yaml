@@ -12,9 +12,8 @@ spec:
           command: ["/bin/sh", "-c"]
           args:
             - |
-              BN="mybucket$(date +%s)"
+              BN="mc-cli-test-bucket"
               mc alias set myminio $MINIO_SERVER $MINIO_ACCESS_KEY $MINIO_SECRET_KEY &&
-              mc mb myminio/$BN &&
               echo "Hello from Kubernetes Job!" > /tmp/hello.txt &&
               mc cp /tmp/hello.txt myminio/$BN/hello.txt &&
               mc cp myminio/$BN/hello.txt /tmp/downloaded_hello.txt &&
@@ -27,13 +26,13 @@ spec:
             - name: MINIO_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: minio
-                  key: rootUser
+                  name: minio-mc-cli
+                  key: accessKey
             - name: MINIO_SECRET_KEY
               valueFrom:
                 secretKeyRef:
-                  name: minio
-                  key: rootPassword
+                  name: minio-mc-cli
+                  key: secretKey
           volumeMounts:
             - name: config-volume
               mountPath: /tmp

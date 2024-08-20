@@ -16,54 +16,19 @@ packages:
       minio-operator:
         uds-minio-config:
           values:
-            # Test copy of root password (disabled by default) to be consumed by test job
-            - path: copyPassword
-              value:
-                enabled: true
-                namespace: mc-cli
-                secretName: minio
-                secretIDKey: rootUser
-                secretPasswordKey: rootPassword
-            - path: custom
-              value:
-                - direction: Ingress
-                  selector:
-                    app: minio
-                  remoteNamespace: mc-cli
-                  remoteSelector:
-                    job-name: minio-job
-                  port: 9000
-                  description: "Ingress from Minio CLI (for tests)"
             # Test helm overrides to provision app specific buckets, policies and creds
             - path: apps
               value:
-                - name: mattermost
-                  namespace: mattermost
+                - name: mc-cli
+                  namespace: mc-cli
                   remoteSelector:
-                    app: mattermost
+                    job-name: minio-job
                   bucketNames:
-                    - mattermost-bucket
+                    - mc-cli-test-bucket
                   policy: ""
                   copyPassword:
                     enabled: true
-                    password:
-                    user: mattermost
+                    user: mc-cli
                     secretName: ""
                     secretIDKey: ""
                     secretPasswordKey: ""
-                - name: test-app
-                  namespace: test-app
-                  remoteSelector:
-                    app: test-app
-                  bucketNames:
-                    - test-bucket123456
-                    - test-bucket12312515
-                    - test-bucket64574754
-                  policy: ""
-                  copyPassword:
-                    enabled: false
-                    password: glarfasd
-                    user: spinio
-                    secretName: test-secret-name
-                    secretIDKey: secret-id-key
-                    secretPasswordKey: secret-password-key

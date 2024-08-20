@@ -20,20 +20,9 @@ apps: []
   #   policy: ""
   #   copyPassword:
   #     enabled: true
-  #     password:
   #     user: minio
   #     secretName:
   #     secretIDKey:
   #     secretPasswordKey:
-
-# Dev only
-copyPassword:
-  enabled: false
-  password:
-  namespace:
-  user: minio
-  secretName: ""
-  secretIDKey:
-  secretPasswordKey:
 
 custom: []
