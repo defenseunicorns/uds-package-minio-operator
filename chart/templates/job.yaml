@@ -50,7 +50,6 @@ spec:
               name:  {{ $.Values.name }}-creds
               key: rootPassword
         volumeMounts:
-        volumeMounts:
         - name: policy-config
           mountPath: /config
         - name: config-volume

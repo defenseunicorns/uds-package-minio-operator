@@ -12,8 +12,6 @@ variables:
     default: uds.dev
 
 components:
-
-
   - name: minio-operator
     required: false
     default: true

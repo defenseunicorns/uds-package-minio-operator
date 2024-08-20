@@ -4,7 +4,6 @@ identityOpenidConfigUrl:
 domain: uds.dev
 rootPassword:
 rootUser: minio
-mcImage: minio/mc:RELEASE.2024-08-03T04-33-23Z
 # sso disabled until we can define the protocol mappers via sso secret
 # or update the uds-core keycloak image
 sso:
