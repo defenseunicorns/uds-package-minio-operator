@@ -34,6 +34,7 @@ permissions:
 jobs:
   run-test:
     name: ${{ matrix.type }} ${{ matrix.flavor }}
+    # TODO: (ZMILLER): Only temporary until made public
     runs-on: uds-swf-ubuntu-big-boy-4-core
     timeout-minutes: 25
     strategy:

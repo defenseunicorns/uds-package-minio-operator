@@ -22,6 +22,7 @@ jobs:
   publish-package:
     needs: tag-new-version
     if: ${{ needs.tag-new-version.outputs.release_created == 'true' }}
+    # TODO: (ZMILLER): Only temporary until made public
     runs-on: uds-swf-ubuntu-big-boy-4-core
     name: Publish ${{ matrix.flavor }}
     strategy:
