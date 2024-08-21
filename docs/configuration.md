@@ -51,6 +51,7 @@ This package facilitates the ability to provision multiple sets of buckets for a
                 # a list of resources can be provided here in the following format. 
                 - name: mc-cli # App name.
                   # The following three fields are used to create an ingress rule into the minio tenant for your app
+                  user: mc-cli # "Access Key ID" for the scoped credential. Note: this cannot be reused and cannot be the same as the root minio credential.
                   namespace: mc-cli # App namespace
                   remoteSelector:
                     job-name: minio-job # Selector of the app that will be connecting to minio
@@ -59,7 +60,6 @@ This package facilitates the ability to provision multiple sets of buckets for a
                   policy: "" # Optional: policy override for the scoped resources is the standard policy does not meet the needs of the application use case.
                   copyPassword: # Whether to copy the secret to the apps namespace. Must be true or false. See below section of this page for more details.
                     enabled: true
-                    user: mc-cli # "Access Key ID" for the scoped credential. Note: this cannot be reused and cannot be the same as the root minio credential.
                     secretName: ""
                     secretIDKey: ""
                     secretPasswordKey: ""

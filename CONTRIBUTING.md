@@ -1,4 +1,4 @@
-# Welcome to the Minio-operator UDS Package
+# Welcome to the Minio Operator UDS Package
 
 Thank you for your interest in this Defense Unicorns UDS Package!
 
