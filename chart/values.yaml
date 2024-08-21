@@ -1,7 +1,7 @@
 name: uds-minio
 identityOpenidClientSecret: "replaceme"
 identityOpenidConfigUrl:
-domain: uds.dev
+domain: ###ZARF_VAR_DOMAIN###
 rootPassword:
 rootUser: minio
 # sso disabled until we can define the protocol mappers via sso secret
