@@ -1,7 +1,5 @@
 {{- range .Values.apps }}
-{{- $secretName := .copyPassword.secretName | default (printf "minio-%s" .name) }}
-{{- $secretIDKey := .copyPassword.secretIDKey | default "accessKey" }}
-{{- $secretPasswordKey := .copyPassword.secretPasswordKey | default "secretKey" }}
+{{- $secretName := (printf "minio-%s" .name) }}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -32,12 +30,12 @@ spec:
           valueFrom:
             secretKeyRef:
               name: {{ $secretName }}
-              key: {{ $secretIDKey }}
+              key: "accessKey"
         - name: USER_SECRET
           valueFrom:
             secretKeyRef:
               name: {{ $secretName }}
-              key: {{ $secretPasswordKey }}
+              key: "secretKey"
         - name: MINIO_ACCESS_KEY
           valueFrom:
             secretKeyRef:

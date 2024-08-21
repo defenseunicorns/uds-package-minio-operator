@@ -18,9 +18,9 @@ apps: []
   #     - test-bucket-2
   #     - test-bucket-3
   #   policy: ""
+  #   user: minio
   #   copyPassword:
   #     enabled: true
-  #     user: minio
   #     secretName:
   #     secretIDKey:
   #     secretPasswordKey:
