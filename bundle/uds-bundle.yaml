@@ -3,7 +3,7 @@ metadata:
   name: minio-test
   description: A UDS Bundle for minio operator (+tenant)
   # x-release-please-start-version
-  version: 0.1.0
+  version: 6.0.2-uds.0
   # x-release-please-end
 
 packages:
