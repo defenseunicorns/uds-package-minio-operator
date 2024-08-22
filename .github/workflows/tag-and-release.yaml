@@ -1,4 +1,4 @@
-name: Publish UDS Package Gitlab
+name: Publish UDS Package Minio Operator
 
 on:
   push:
@@ -22,11 +22,14 @@ jobs:
   publish-package:
     needs: tag-new-version
     if: ${{ needs.tag-new-version.outputs.release_created == 'true' }}
-    runs-on: ubuntu-latest
-    name: Publish ${{ matrix.flavor }}
-    strategy:
-      matrix:
-        flavor: [upstream, registry1]
+    runs-on: ${{ matrix.architecture == 'arm64' && 'uds-swf-ubuntu-arm64-4-core' || 'ubuntu-latest' }}
+    name: Publish ${{ matrix.flavor }} ${{ matrix.architecture }}
+    matrix:
+      flavor: [upstream, registry1]
+      architecture: [amd64, arm64]
+      exclude:
+        - flavor: registry1
+          architecture: arm64
 
     permissions:
       contents: read
@@ -42,12 +45,19 @@ jobs:
           registry1Password: ${{ secrets.IRON_BANK_ROBOT_PASSWORD }}
           ghToken: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish Package
-        run: uds run -f tasks/publish.yaml package --set FLAVOR=${{ matrix.flavor }}
+      - name: Build Package
+        run: uds run -f tasks/publish.yaml build-package --set FLAVOR=${{ matrix.flavor }} --no-progress
 
-      - name: Publish Bundle
-        if: ${{ matrix.flavor == 'upstream' }}
-        run: uds run -f tasks/publish.yaml test-bundle --set FLAVOR=${{ matrix.flavor }}
+      - name: Test Package
+        if: ${{ runner.arch != 'ARM64' }}
+        run: uds run -f tasks/publish.yaml test-package --set FLAVOR=${{ matrix.flavor }} --no-progress
+
+      - name: Publish Package
+        run: uds run -f tasks/publish.yaml publish-package --set FLAVOR=${{ matrix.flavor }} --no-progress
+
+      - name: Debug Output
+        if: ${{ always() }}
+        uses: defenseunicorns/uds-common/.github/actions/debug-output@afd3aea72462ac21a715cb5dbc2654b42073ac40 # v0.11.0
 
       - name: Save logs
         if: always()
