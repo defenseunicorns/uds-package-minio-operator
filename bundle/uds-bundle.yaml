@@ -28,7 +28,6 @@ packages:
                   policy: ""
                   copyPassword:
                     enabled: true
-                    user: mc-cli
                     secretName: ""
                     secretIDKey: ""
                     secretPasswordKey: ""
