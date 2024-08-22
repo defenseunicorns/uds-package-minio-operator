@@ -1,14 +1,33 @@
 kind: UDSBundle
-metadata: 
-  name: uds-package-minio
+metadata:
+  name: minio-test
   description: A UDS Bundle for minio operator (+tenant)
   # x-release-please-start-version
-  version: 0.0.1
-  # x-release-please-end 
+  version: 0.1.0
+  # x-release-please-end
 
-packages: 
+packages:
   - name: minio-operator
     path: ../
     # x-release-please-start-version
-    ref: 5.0.15-uds.0
+    ref: 6.0.2-uds.0
     # x-release-please-end
+    overrides:
+      minio-operator:
+        uds-minio-config:
+          values:
+            # Test helm overrides to provision app specific buckets, policies and creds
+            - path: apps
+              value:
+                - name: mc-cli
+                  namespace: mc-cli
+                  remoteSelector:
+                    job-name: minio-job
+                  bucketNames:
+                    - mc-cli-test-bucket
+                  policy: ""
+                  copyPassword:
+                    enabled: true
+                    secretName: ""
+                    secretIDKey: ""
+                    secretPasswordKey: ""

@@ -1,11 +1,28 @@
-minio:
-  displayName: uds-minio-dev
-  identityOpenidClaimName: groups #policy
-  identityOpenidClientId: uds-minio-sso
-  identityOpenidClientSecret: UpdD4pN6omB7JmjQU0piKjuPKU2fujbq
-  identityOpenidConfigUrl:  https://sso.uds.dev/realms/uds/.well-known/openid-configuration
-  identityOpenidScopes: openid,groups #,email,profile
-  identityOpenidRedirectUriDynamic: on
-  rootPassword: minio123
-  rootUser: minio
+name: uds-minio
+identityOpenidClientSecret: "replaceme"
+identityOpenidConfigUrl:
+domain: ###ZARF_VAR_DOMAIN###
+rootPassword:
+rootUser: minio
+# sso disabled until we can define the protocol mappers via sso secret
+# or update the uds-core keycloak image
+sso:
+  enabled: false
+apps: []
+  # - name: test-app
+  #   namespace: ""
+  #   remoteSelector:
+  #     app: minio
+  #   bucketNames:
+  #     - test-bucket
+  #     - test-bucket-2
+  #     - test-bucket-3
+  #   policy: ""
+  #   user: minio
+  #   copyPassword:
+  #     enabled: true
+  #     secretName:
+  #     secretIDKey:
+  #     secretPasswordKey:
 
+custom: []

@@ -1,0 +1,54 @@
+{{- range .Values.apps }}
+{{- if hasKey . "bucketNames" }}
+{{- $bucketNames := .bucketNames | default list }}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .name }}-minio-policy
+  namespace: minio
+data:
+  policy.json: |
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": [
+            "s3:ListBucket",
+            "s3:GetBucketLocation"
+          ],
+          "Resource": [
+            {{- range $index, $bucket := $bucketNames }}
+            "arn:aws:s3:::{{ $bucket }}"{{ if lt (add $index 1) (len $bucketNames) }},{{ end }}
+            {{- end }}
+          ]
+        },
+        {
+          "Effect": "Allow",
+          "Action": [
+            "s3:PutObject",
+            "s3:GetObject",
+            "s3:DeleteObject"
+          ],
+          "Resource": [
+            {{- range $index, $bucket := $bucketNames }}
+            "arn:aws:s3:::{{ $bucket }}/*"{{ if lt (add $index 1) (len $bucketNames) }},{{ end }}
+            {{- end }}
+          ]
+        }
+      ]
+    }
+---
+{{- else }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .name }}-minio-policy
+  namespace: minio
+data:
+  policy.json: |
+    {{ .policy | indent 4 }}
+---
+{{- end }}
+{{- end }}

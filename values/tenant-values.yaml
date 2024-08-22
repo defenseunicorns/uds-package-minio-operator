@@ -1,22 +1,7 @@
-# secrets:
-#   name: uds-minio-dev
-#   accessKey: minio 
-#   secretKey: minio123
 tenant:
-  name: uds-minio-dev
-
-
-  imagePullSecret: { }
-  scheduler: { }
-
+  name: ###ZARF_VAR_TENANT###
   configuration:
-    name: uds-minio-dev
-
-  #    stringData:
-  #       config.env: |-
-  #         export MINIO_ROOT_USER=ROOTUSERNAME
-  #         export MINIO_ROOT_PASSWORD=ROOTUSERPASSWORD
-  #
+    name: ###ZARF_VAR_TENANT###
     existingSecret: true
   pools:
       # 1x4 for standalone
@@ -25,10 +10,9 @@ tenant:
       name: pool-0
       volumesPerServer: 4
       size: 1Gi
-
   metrics:
     enabled: true
     port: 9000
-    protocol: https
+    protocol: http
   certificate:
     requestAutoCert: false

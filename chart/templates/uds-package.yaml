@@ -5,39 +5,23 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   network:
-    expose:       
-      - service: console
-        selector:
-          app.kubernetes.io/instance: minio-operator-console
-        host: minio-operator-console
-        gateway: admin
-        port: 9090
-      - service: sts
+    allow:
+      - direction: Egress
+        remoteNamespace: minio
+        remoteSelector:
+          v1.min.io/tenant: {{ .Values.name }}
         selector:
           app.kubernetes.io/name: operator
-        host: minio-sts
-        gateway: tenant
-        port: 4223
-    allow:
+        description: "Egress to tenant"
+      - direction: Ingress
+        remoteNamespace: minio
+        remoteSelector:
+          v1.min.io/tenant: {{ .Values.name }}
+        selector:
+          app.kubernetes.io/name: operator
+        description: "Ingress from tenant"
 
-    # TODO @zachariahmiller narrow down and add "custom" rules template
-      - direction: Ingress
-        remoteGenerated: Anywhere
       - direction: Egress
-        remoteGenerated: Anywhere
-      - direction: Ingress
-        remoteGenerated: IntraNamespace
-      - direction: Egress
-        remoteGenerated: IntraNamespace
-      # - direction: Egress
-      #   selector:
-      #     app.kubernetes.io/name: operator 
-      #   remoteGenerated: KubeAPI
-      # - direction: Ingress
-      #   remoteNamespace: monitoring
-      #   remoteSelector:
-      #     app: prometheus
-      #   selector:
-      #     app: minio
-      #   port: 9000
-      #   description: "Registry Service Monitor"
+        selector:
+          app.kubernetes.io/name: operator 
+        remoteGenerated: KubeAPI

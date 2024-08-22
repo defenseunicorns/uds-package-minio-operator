@@ -1,16 +1,21 @@
-# 🏭 UDS Minio-operator Package
+# 🏭 UDS Minio Operator Package
 
 [![Latest Release](https://img.shields.io/github/v/release/defenseunicorns/uds-package-minio-operator)](https://github.com/defenseunicorns/uds-package-minio-operator/releases)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/defenseunicorns/uds-package-minio-operator/tag-and-release.yaml)](https://github.com/defenseunicorns/uds-package-minio-operator/actions/workflows/tag-and-release.yaml)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/defenseunicorns/uds-package-minio-operator/badge)](https://api.securityscorecards.dev/projects/github.com/defenseunicorns/uds-package-minio-operator)
 
-This package is designed for use as part of a bundle deployed on [UDS Core](https://github.com/defenseunicorns/uds-core).
+
+> [!WARNING]  
+> `uds-package-minio-operator` is in development and is absolutely not ready for general consumption.  If you would like to improve this package, please open a PR.
+
+This package is designed for use as part of a [UDS Software Factory](https://github.com/defenseunicorns/uds-software-factory) bundle deployed on [UDS Core](https://github.com/defenseunicorns/uds-core).
 
 ## Flavors
 
 | Flavor | Description | Example Creation |
 | ------ | ----------- | ---------------- |
 | upstream | Uses upstream images within the package. | `zarf package create . -f upstream` |
+| registry1 | Uses registry1 images within the package. | `zarf package create . -f registry1` |
 
 ## Releases
 
@@ -25,3 +30,7 @@ The released packages can be found in [ghcr](https://github.com/defenseunicorns/
 ## Contributing
 
 Please see the [CONTRIBUTING.md](./CONTRIBUTING.md)
+
+## Development
+
+When developing this package it is ideal to utilize the json schemas for UDS Bundles, Zarf Packages and Maru Tasks. This involves configuring your IDE to provide schema validation for the respective files used by each application. For guidance on how to set up this schema validation, please refer to the [guide](https://github.com/defenseunicorns/uds-common/blob/main/docs/development-ide-configuration.md) in uds-common.

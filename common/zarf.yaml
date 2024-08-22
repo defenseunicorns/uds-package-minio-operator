@@ -3,7 +3,7 @@ kind: ZarfPackageConfig
 
 metadata:
   name: minio-operator
-  description: auto-generated using `zarf dev generate`
+  description: UDS Minio Operator and Tenant Package`
 
 components:
   - name: minio-operator
@@ -12,20 +12,28 @@ components:
         namespace: minio-operator
         version: 0.1.0
         localPath: ../chart
+        variables:
+          - name: TENANT
+            path: name
+            description: The name of the tenant
       - name: minio-operator
-        version: v5.0.15
+        version: v6.0.2
         url: https://github.com/minio/operator.git
         gitPath: helm/operator
         namespace: minio-operator
         valuesFiles:
           - ../values/common-values.yaml
       - name: minio-tenant
-        version: v5.0.15
+        version: v6.0.2
         url: https://github.com/minio/operator.git
         gitPath: helm/tenant/
         namespace: minio
         valuesFiles:
           - ../values/tenant-values.yaml
+        variables:
+          - name: TENANT
+            path: tenant.name
+            description: The name of the tenant
     actions:
       onDeploy:
         after:
@@ -37,4 +45,18 @@ components:
                 name: minio-operator
                 namespace: minio-operator
                 condition: "'{.status.phase}'=Ready"
-        # TODO add one of these for the tenant CR to be ready
+          - description: Validate Minio Tenant Package
+            maxTotalSeconds: 300
+            wait:
+              cluster:
+                kind: Packages
+                name: minio
+                namespace: minio
+                condition: "'{.status.phase}'=Ready"
+          - description: Minio App/Tenant Status
+            wait:
+              cluster:
+                kind: pod
+                name: app=minio
+                namespace: minio
+                condition: Ready
