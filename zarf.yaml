@@ -3,7 +3,10 @@ kind: ZarfPackageConfig
 metadata:
   name: minio-operator
   description: "UDS Minio Operator Package"
-  version: 6.0.2-uds.0
+  # x-release-please-start-version
+  version: "6.0.2-uds.0"
+  # x-release-please-end
+
 
 variables:
   - name: TENANT
