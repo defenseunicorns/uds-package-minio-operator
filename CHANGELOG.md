@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.2-uds.2](https://github.com/defenseunicorns/uds-package-minio-operator/compare/v6.0.2-uds.1...v6.0.2-uds.2) (2024-08-22)
+
+
+### Bug Fixes
+
+* remove nonexistant task from publish test ([#9](https://github.com/defenseunicorns/uds-package-minio-operator/issues/9)) ([6e2f107](https://github.com/defenseunicorns/uds-package-minio-operator/commit/6e2f107ba254a54603987822cd0a6cf36e08b02b))
+
 ## [6.0.2-uds.1](https://github.com/defenseunicorns/uds-package-minio-operator/compare/v6.0.2-uds.0...v6.0.2-uds.1) (2024-08-22)
 
 
