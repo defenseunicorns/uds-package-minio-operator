@@ -29,6 +29,44 @@ packages:
                   size: 10Gi
 ```
 
+## Exposing MinIO Storage Pool parameters for deploy-time overrides.
+
+When importing this package into a UDS Bundle, the storage pool parameters can
+also be exposed as variables for deploy-time overrides. This can be done by
+adding the following to the component's `overrides` section, as an example:
+
+```yaml
+packages:
+  ...
+  - name: minio-operator-package
+    overrides:
+      minio-operator:
+        minio-tenant:
+          variables:
+            - name: MINIO_POOL_NAME
+              path: "tenant.pools[0].name"
+              description: "MinIO's Pool Name"
+              default: "pool-0"
+            - name: MINIO_VOLSPER_SERVER
+              path: "tenant.pools[0].volumesPerServer"
+              description: "Number of volumes per server"
+              default: "4"
+            - name: MINIO_SERVERS
+              path: "tenant.pools[0].servers"
+              description: "Number of MinIO servers"
+              default: "1"
+            - name: MINIO_PVC_SIZE
+              path: "tenant.pools[0].size"
+              description: "MinIO PVC Size"
+              default: "2Gi"
+```
+
+Now these variables can be set at deploy-time using the `--set` flag, as an example:
+
+```shell
+uds deploy my-bundle --set MINIO_POOL_NAME=pool-1 --set MINIO_VOLSPER_SERVER=2 --set MINIO_SERVERS=2 --set MINIO_PVC_SIZE=5Gi
+```
+
 For more details on storage pool requirements see the [Minio documentation](https://min.io/docs/minio/kubernetes/upstream/reference/operator-crd.html#pool).
 
 ## Resource Provisioning
