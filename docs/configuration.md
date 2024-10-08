@@ -45,15 +45,15 @@ packages:
           variables:
             - name: MINIO_POOL_NAME
               path: "tenant.pools[0].name"
-              description: "Minios Pool Name"
+              description: "MinIO's Pool Name"
               default: "pool-0"
             - name: MINIO_VOLSPER_SERVER
               path: "tenant.pools[0].volumesPerServer"
-              description: "MinIO Volumes per server"
+              description: "Number of volumes per server"
               default: "4"
             - name: MINIO_SERVERS
               path: "tenant.pools[0].servers"
-              description: "MinIO servers"
+              description: "Number of MinIO servers"
               default: "1"
             - name: MINIO_PVC_SIZE
               path: "tenant.pools[0].size"
@@ -64,6 +64,8 @@ packages:
 Now these variables can be set at deploy-time using the `--set` flag, as an example:
 
 ```shell
+uds deploy my-bundle --set MINIO_POOL_NAME=pool-1 --set MINIO_VOLSPER_SERVER=2 --set MINIO_SERVERS=2 --set MINIO_PVC_SIZE=5Gi
+```
 
 For more details on storage pool requirements see the [Minio documentation](https://min.io/docs/minio/kubernetes/upstream/reference/operator-crd.html#pool).
 
