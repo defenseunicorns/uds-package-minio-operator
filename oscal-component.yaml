@@ -44,4 +44,4 @@ component-definition:
       - uuid: dd5eeba8-c66c-4987-a42a-5537b0783a3e
         title: UDS Package Minio Operator
         rlinks:
-          - href: https://github.com/defenseunicorns/uds-package-valkey
+          - href: https://github.com/defenseunicorns/uds-package-minio-operator
