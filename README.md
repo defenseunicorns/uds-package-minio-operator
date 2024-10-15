@@ -1,7 +1,7 @@
 # 🏭 UDS Minio Operator Package
 
 [![Latest Release](https://img.shields.io/github/v/release/defenseunicorns/uds-package-minio-operator)](https://github.com/defenseunicorns/uds-package-minio-operator/releases)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/defenseunicorns/uds-package-minio-operator/tag-and-release.yaml)](https://github.com/defenseunicorns/uds-package-minio-operator/actions/workflows/tag-and-release.yaml)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/defenseunicorns/uds-package-minio-operator/release.yaml)](https://github.com/defenseunicorns/uds-package-minio-operator/actions/workflows/release.yaml)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/defenseunicorns/uds-package-minio-operator/badge)](https://api.securityscorecards.dev/projects/github.com/defenseunicorns/uds-package-minio-operator)
 
 

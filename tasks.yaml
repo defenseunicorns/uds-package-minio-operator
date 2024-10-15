@@ -1,62 +1,82 @@
+# Copyright 2024 Defense Unicorns
+# SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
+
 includes:
   - test: ./tasks/test.yaml
   - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.1.0/tasks/create.yaml
+  - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.1.0/tasks/publish.yaml
   - lint: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.1.0/tasks/lint.yaml
   - pull: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.1.0/tasks/pull.yaml
   - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.1.0/tasks/deploy.yaml
   - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.1.0/tasks/setup.yaml
+  - actions: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.1.0/tasks/actions.yaml
+  - badge: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.1.0/tasks/badge.yaml
+  - upgrade: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.1.0/tasks/upgrade.yaml
+  - compliance: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.1.0/tasks/compliance.yaml
 
 tasks:
   - name: default
-    description: Setup k3d cluster, deploy Mattermost
+    description: Create K3D Cluster with UDS-Core (Dev) and Minio Operator
     actions:
-      - task: create-test-bundle
+      - task: create-dev-package
       - task: setup:k3d-test-cluster
-      - task: deploy:test-bundle
+      - task: create-deploy-test-bundle
 
-  - name: create-package
-    description: Create the Mattermost package
+  - name: create-dev-package
+    description: Create the Minio Operator package
     actions:
       - task: create:package
         with:
           options: "--skip-sbom"
 
-  - name: create-test-bundle
-    description: Create a local UDS Mattermost bundle
+  - name: create-deploy-test-bundle
+    description: Test and validate cluster is deployed with Minio Operator
     actions:
-      - task: create-package
       - task: create:test-bundle
-
-  - name: create-latest-release-bundle
-    description: Create UDS Mattermost bundle based on the latest release
-    actions:
-      - task: pull:latest-package-release
-        with:
-          spoof_release: "true"
-      - task: create:test-bundle
+      - task: deploy:test-bundle
+      - task: setup:create-doug-user
+      - task: test:all
 
   - name: dev
-    description: Create and deploy the bundle on an existing cluster (for iteration/dev speed)
+    description: Create and deploy the bundle against an existing cluster
     actions:
-      - task: create-test-bundle
+      - task: create-dev-package
+      - task: create:test-bundle
       - task: deploy:test-bundle
 
-# CI will execute the following (via uds-common/.github/actions/test) so they need to be here with these names
+# CI will execute the following (via uds-common/.github/workflows/callable-[test|publish].yaml) so they need to be here with these names
 
   - name: test-package
-    description: Test the health of a Mattermost deployment
+    description: Test the health of a Minio Operator deployment
     actions:
-      - task: create-test-bundle
+      - task: create-dev-package
       - task: setup:k3d-test-cluster
-      - task: deploy:test-bundle
-      - task: test:all
+      - task: create-deploy-test-bundle
+      - task: compliance:validate
 
   - name: test-upgrade
     description: Test an upgrade from the latest released package to the current branch
     actions:
-      - task: create-latest-release-bundle
+      - task: upgrade:create-latest-tag-bundle
       - task: setup:k3d-test-cluster
       - task: deploy:test-bundle
-      - task: create-test-bundle
-      - task: deploy:test-bundle
-      - task: test:all
+      - task: setup:create-doug-user
+      - task: compliance:validate
+      - task: create-dev-package
+      - task: create-deploy-test-bundle
+      - task: compliance:validate
+      - task: compliance:evaluate
+
+  - name: publish-package
+    description: Build and publish the packages
+    actions:
+      - task: actions:determine-arch
+      - task: create:package
+      - task: setup:k3d-test-cluster
+      - task: create-deploy-test-bundle
+      - description: Publish the package
+        task: publish:package
+        with:
+          # x-release-please-start-version
+          version: "6.0.2-uds.2"
+          # x-release-please-end
