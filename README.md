@@ -1,12 +1,13 @@
 # 🏭 UDS Minio Operator Package
 
+[<img alt="Made for UDS" src="https://raw.githubusercontent.com/defenseunicorns/uds-common/refs/heads/main/docs/assets/made-for-uds-bronze.svg" height="20px"/>](https://github.com/defenseunicorns/uds-core)
 [![Latest Release](https://img.shields.io/github/v/release/defenseunicorns/uds-package-minio-operator)](https://github.com/defenseunicorns/uds-package-minio-operator/releases)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/defenseunicorns/uds-package-minio-operator/release.yaml)](https://github.com/defenseunicorns/uds-package-minio-operator/actions/workflows/release.yaml)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/defenseunicorns/uds-package-minio-operator/badge)](https://api.securityscorecards.dev/projects/github.com/defenseunicorns/uds-package-minio-operator)
 
 
-> [!WARNING]  
-> `uds-package-minio-operator` is in development and is not ready for general consumption.  If you would like to improve this package, please open a PR.
+> [!NOTE]
+> `uds-package-minio-operator` is only a Bronze package and does not support all minio-operator features yet! If you would like to improve the package we welcome PRs! (see [Contributing](#contributing) below)
 
 This package is designed for use as part of a [UDS Software Factory](https://github.com/defenseunicorns/uds-software-factory) bundle deployed on [UDS Core](https://github.com/defenseunicorns/uds-core).
 
