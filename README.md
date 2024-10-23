@@ -6,16 +6,13 @@
 
 
 > [!WARNING]  
-> `uds-package-minio-operator` is in development and is absolutely not ready for general consumption.  If you would like to improve this package, please open a PR.
+> `uds-package-minio-operator` is in development and is not ready for general consumption.  If you would like to improve this package, please open a PR.
 
 This package is designed for use as part of a [UDS Software Factory](https://github.com/defenseunicorns/uds-software-factory) bundle deployed on [UDS Core](https://github.com/defenseunicorns/uds-core).
 
-## Flavors
+## Prerequisites
 
-| Flavor | Description | Example Creation |
-| ------ | ----------- | ---------------- |
-| upstream | Uses upstream images within the package. | `zarf package create . -f upstream` |
-| registry1 | Uses registry1 images within the package. | `zarf package create . -f registry1` |
+This package requires a Kubernetes Cluster providing a Storage Class that has [UDS Core](https://github.com/defenseunicorns/uds-core) installed into it.  You can learn more about configuring this package in the [configuration documentation](./docs/configuration.md)
 
 ## Releases
 
