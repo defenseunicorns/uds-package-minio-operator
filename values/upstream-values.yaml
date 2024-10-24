@@ -4,7 +4,7 @@
 operator:
   image:
     repository: quay.io/minio/operator
-    tag: v6.0.2
+    tag: v6.0.4
   sidecarImage:
     repository: quay.io/minio/operator-sidecar
     tag: v6.0.2
