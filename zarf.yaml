@@ -36,7 +36,7 @@ components:
         valuesFiles:
           - values/upstream-tenant-values.yaml
     images:
-      - quay.io/minio/operator:v6.0.2
+      - quay.io/minio/operator:v6.0.4
       - minio/mc:RELEASE.2024-08-13T05-33-17Z
       - quay.io/minio/minio:RELEASE.2024-08-03T04-33-23Z
       - quay.io/minio/operator-sidecar:v6.0.2
@@ -62,7 +62,7 @@ components:
         valuesFiles:
           - values/registry1-tenant-values.yaml
     images:
-      - registry1.dso.mil/ironbank/opensource/minio/operator:v6.0.2
+      - registry1.dso.mil/ironbank/opensource/minio/operator:v6.0.4
       - registry1.dso.mil/ironbank/opensource/minio/operator-sidecar:v6.0.2
       - registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2024-08-13T05-33-17Z
       - registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2024-06-04T19-20-08Z
