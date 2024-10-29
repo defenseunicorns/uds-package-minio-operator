@@ -1,5 +1,21 @@
 # Changelog
 
+## [6.0.4-uds.0](https://github.com/defenseunicorns/uds-package-minio-operator/compare/v6.0.2-uds.2...v6.0.4-uds.0) (2024-10-29)
+
+
+### Features
+
+* add unicorn flavor ([#24](https://github.com/defenseunicorns/uds-package-minio-operator/issues/24)) ([2c230e7](https://github.com/defenseunicorns/uds-package-minio-operator/commit/2c230e7b4c21ae2632ff5629200b7bb50f12273b))
+
+
+### Miscellaneous
+
+* bronze badge, streamline README and GH permissions ([#20](https://github.com/defenseunicorns/uds-package-minio-operator/issues/20)) ([e831ca2](https://github.com/defenseunicorns/uds-package-minio-operator/commit/e831ca24c8bf2f701dbdff599af76370844162a3))
+* **deps:** update minio-operator package dependencies to v6.0.4 ([#16](https://github.com/defenseunicorns/uds-package-minio-operator/issues/16)) ([51cbed6](https://github.com/defenseunicorns/uds-package-minio-operator/commit/51cbed629bb68e445ec787392b8f93e7b54b8cf8))
+* **deps:** update minio-operator support dependencies ([#17](https://github.com/defenseunicorns/uds-package-minio-operator/issues/17)) ([aedf2f4](https://github.com/defenseunicorns/uds-package-minio-operator/commit/aedf2f44dcf8252c99eb96364eed9209a5e8ef33))
+* **deps:** update minio-operator support dependencies ([#19](https://github.com/defenseunicorns/uds-package-minio-operator/issues/19)) ([f3d6303](https://github.com/defenseunicorns/uds-package-minio-operator/commit/f3d63036b835aa16c7ba64ac655f74f716808555))
+* update codeowners ([#12](https://github.com/defenseunicorns/uds-package-minio-operator/issues/12)) ([28c3cab](https://github.com/defenseunicorns/uds-package-minio-operator/commit/28c3cab5debfccf36dd19193e292402dea868e09))
+
 ## [6.0.2-uds.2](https://github.com/defenseunicorns/uds-package-minio-operator/compare/v6.0.2-uds.1...v6.0.2-uds.2) (2024-08-22)
 
 
