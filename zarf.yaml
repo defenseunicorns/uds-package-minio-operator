@@ -19,8 +19,7 @@ variables:
 
 components:
   - name: minio-operator
-    required: false
-    default: true
+    required: true
     import:
       path: common
     only:
@@ -43,8 +42,7 @@ components:
 
 
   - name: minio-operator
-    required: false
-    default: true
+    required: true
     import:
       path: common
     only:
@@ -66,3 +64,25 @@ components:
       - registry1.dso.mil/ironbank/opensource/minio/operator-sidecar:v6.0.2
       - registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2024-08-13T05-33-17Z
       - registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2024-06-04T19-20-08Z
+
+  - name: minio-operator
+    required: true
+    import:
+      path: common
+    only:
+      flavor: unicorn
+    charts:
+      - name: uds-minio-config
+        valuesFiles:
+          - values/unicorn-config-values.yaml
+      - name: minio-operator
+        valuesFiles:
+          - values/unicorn-values.yaml
+      - name: minio-tenant
+        valuesFiles:
+          - values/unicorn-tenant-values.yaml
+    images:
+      - cgr.dev/du-uds-defenseunicorns/minio-operator-fips:6.0.4
+      - quay.io/minio/operator-sidecar:v6.0.2
+      - cgr.dev/du-uds-defenseunicorns/minio-client-fips:0
+      - cgr.dev/du-uds-defenseunicorns/minio-fips:0

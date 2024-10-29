@@ -1,0 +1,11 @@
+# Copyright 2024 Defense Unicorns
+# SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
+
+operator:
+  image:
+    repository: cgr.dev/du-uds-defenseunicorns/minio-operator-fips
+    tag: "6.0.4"
+  sidecarImage:
+    repository: quay.io/minio/operator-sidecar
+    tag: v6.0.2
+    pullPolicy: IfNotPresent
