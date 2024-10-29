@@ -2,3 +2,4 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
 
 mcImage: cgr.dev/du-uds-defenseunicorns/minio-client-fips:0
+mcShell: /bin/bash
