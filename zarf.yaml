@@ -20,7 +20,6 @@ variables:
 components:
   - name: minio-operator
     required: true
-    default: true
     import:
       path: common
     only:
@@ -44,7 +43,6 @@ components:
 
   - name: minio-operator
     required: true
-    default: true
     import:
       path: common
     only:
@@ -69,7 +67,6 @@ components:
 
   - name: minio-operator
     required: true
-    default: true
     import:
       path: common
     only:
