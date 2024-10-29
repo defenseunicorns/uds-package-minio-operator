@@ -19,7 +19,7 @@ variables:
 
 components:
   - name: minio-operator
-    required: false
+    required: true
     default: true
     import:
       path: common
@@ -43,7 +43,7 @@ components:
 
 
   - name: minio-operator
-    required: false
+    required: true
     default: true
     import:
       path: common
@@ -68,7 +68,7 @@ components:
       - registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2024-06-04T19-20-08Z
 
   - name: minio-operator
-    required: false
+    required: true
     default: true
     import:
       path: common
