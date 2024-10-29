@@ -14,7 +14,7 @@ spec:
       containers:
       - name: minio-setup
         image: {{ $.Values.mcImage }}
-        command: ["sh", "-c"]
+        command: ["/bin/bash", "-c"]
         args:
           - |
             mc alias set myminio $MINIO_SERVER $MINIO_ACCESS_KEY $MINIO_SECRET_KEY;
