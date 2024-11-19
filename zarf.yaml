@@ -83,6 +83,6 @@ components:
           - values/unicorn-tenant-values.yaml
     images:
       - cgr.dev/du-uds-defenseunicorns/minio-operator-fips:6.0.4
-      - quay.io/minio/operator-sidecar:v6.0.2
+      - cgr.dev/du-uds-defenseunicorns/minio-operator-sidecar:6.0.4
       - cgr.dev/du-uds-defenseunicorns/minio-client-fips:0
       - cgr.dev/du-uds-defenseunicorns/minio-fips:0
