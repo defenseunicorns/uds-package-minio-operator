@@ -6,6 +6,6 @@ operator:
     repository: cgr.dev/du-uds-defenseunicorns/minio-operator-fips
     tag: "6.0.4"
   sidecarImage:
-    repository: quay.io/minio/operator-sidecar
-    tag: v6.0.2
+    repository: cgr.dev/du-uds-defenseunicorns/minio-operator-sidecar-fips
+    tag: "6.0.4"
     pullPolicy: IfNotPresent
