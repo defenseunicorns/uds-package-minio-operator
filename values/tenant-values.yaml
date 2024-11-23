@@ -1,11 +1,14 @@
 # Copyright 2024 Defense Unicorns
 # SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
 
-secrets: null
 tenant:
   name: ###ZARF_VAR_TENANT###
   configuration:
     name: ###ZARF_VAR_TENANT###
+    existingSecret: true
+  configSecret:
+    accessKey: null
+    secretKey: null
     existingSecret: true
   pools:
       # 1x4 for standalone
