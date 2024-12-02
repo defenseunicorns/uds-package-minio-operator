@@ -1,9 +1,9 @@
 # Copyright 2024 Defense Unicorns
 # SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
 
-{{- range .Values.apps }}
-{{- if hasKey . "bucketNames" }}
-{{- $bucketNames := .bucketNames | default list }}
+{{- range $app := .Values.apps }}
+{{- if or (not (hasKey $app "policy")) (eq $app.policy "") }}
+{{- $bucketNames := $app.bucketNames | default list }}
 
 apiVersion: v1
 kind: ConfigMap
@@ -54,7 +54,7 @@ metadata:
   namespace: minio
 data:
   policy.json: |
-    {{ tpl .policy | indent 4 }}
+{{ tpl $app.policy $app | indent 4 }}
 ---
 {{- end }}
 {{- end }}

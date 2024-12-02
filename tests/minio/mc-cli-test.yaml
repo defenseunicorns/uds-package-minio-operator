@@ -4,7 +4,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: minio-job
+  name: minio-test-job
   namespace: mc-cli
 spec:
   template:
@@ -16,10 +16,10 @@ spec:
           args:
             - |
               BN="mc-cli-test-bucket"
-              mc alias set myminio $MINIO_SERVER $MINIO_ACCESS_KEY $MINIO_SECRET_KEY &&
-              echo "Hello from Kubernetes Job!" > /tmp/hello.txt &&
-              mc cp /tmp/hello.txt myminio/$BN/hello.txt &&
-              mc cp myminio/$BN/hello.txt /tmp/downloaded_hello.txt &&
+              mc alias set myminio $MINIO_SERVER $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
+              echo "Hello from Kubernetes Job!" > /tmp/hello.txt
+              mc cp /tmp/hello.txt myminio/$BN/hello.txt
+              mc cp myminio/$BN/hello.txt /tmp/downloaded_hello.txt
               echo "Bucket, upload, and download operations completed successfully"
           env:
             - name: MINIO_SERVER
@@ -29,12 +29,12 @@ spec:
             - name: MINIO_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: minio-mc-cli
+                  name: minio-mc-cli-test
                   key: accessKey
             - name: MINIO_SECRET_KEY
               valueFrom:
                 secretKeyRef:
-                  name: minio-mc-cli
+                  name: minio-mc-cli-test
                   key: secretKey
           volumeMounts:
             - name: config-volume

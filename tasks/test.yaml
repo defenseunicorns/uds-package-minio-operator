@@ -18,7 +18,15 @@ tasks:
         wait:
           cluster:
             kind: Job
-            name: minio-job
+            name: minio-test-job
+            namespace: mc-cli
+            condition: "'{.status.succeeded}'=1"
+      - description: Validate Policy Job Completed
+        maxTotalSeconds: 300
+        wait:
+          cluster:
+            kind: Job
+            name: minio-policy-job
             namespace: mc-cli
             condition: "'{.status.succeeded}'=1"
 

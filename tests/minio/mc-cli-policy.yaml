@@ -1,0 +1,49 @@
+# Copyright 2024 Defense Unicorns
+# SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: minio-policy-job
+  namespace: mc-cli
+spec:
+  template:
+    spec:
+      containers:
+        - name: minio-client
+          image: minio/mc
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              BN="mc-cli-policy-bucket"
+              mc alias set myminio $MINIO_SERVER $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
+              echo "Hello from Kubernetes Job!" > /tmp/hello.txt
+              if mc cp /tmp/hello.txt myminio/$BN/hello.txt; then
+                echo "Bucket upload should be disallowed but succeeded instead"
+                exit 1
+              fi
+              mc ls myminio/$BN
+              echo "Bucket upload failed successfully and list completed successfully"
+          env:
+            - name: MINIO_SERVER
+              value: "http://uds-minio-hl.minio.svc.cluster.local:9000"
+            - name: MC_CONFIG_DIR
+              value: "/tmp/mc/"
+            - name: MINIO_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio-mc-cli-policy
+                  key: accessKey
+            - name: MINIO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio-mc-cli-policy
+                  key: secretKey
+          volumeMounts:
+            - name: config-volume
+              mountPath: /tmp
+      restartPolicy: Never
+      volumes:
+        - name: config-volume
+          emptyDir: {}
+  backoffLimit: 4
