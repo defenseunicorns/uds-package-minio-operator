@@ -22,7 +22,6 @@ apps: []
   #     - test-bucket-3
   #   policy: ""
   #   user: minio
-  #   password: minio123
   #   copyPassword:
   #     enabled: true
   #     secretName:
