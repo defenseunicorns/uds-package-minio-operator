@@ -6,7 +6,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ .name }}-minio-setup
+  name: {{ .name }}-minio-setup-{{ $.Release.Revision }}
   namespace: minio
 spec:
   template:
@@ -17,13 +17,16 @@ spec:
         command: [{{ $.Values.mcShell | quote }}, "-c"]
         args:
           - |
-            mc alias set myminio $MINIO_SERVER $MINIO_ACCESS_KEY $MINIO_SECRET_KEY;
+            # If we cannot connect to the minio cluster kill the Job to force a restart
+            mc alias set myminio $MINIO_SERVER $MINIO_ACCESS_KEY $MINIO_SECRET_KEY || exit 1;
+
             {{- range $bucket := .bucketNames }}
-            mc mb myminio/{{ $bucket }};
+            mc mb --ignore-existing myminio/{{ $bucket }};
             {{- end }}
+
             mc admin policy create myminio {{ .name }}-policy /config/policy.json;
             mc admin user add myminio $USER $USER_SECRET;
-            mc admin policy attach myminio {{ .name }}-policy --user $USER;
+            mc admin policy attach myminio {{ .name }}-policy --user $USER || echo Skipping user attachment;
         env:
         - name: MINIO_SERVER
           value: "http://uds-minio-hl.minio.svc.cluster.local:9000"
@@ -56,11 +59,12 @@ spec:
           mountPath: /tmp
       restartPolicy: OnFailure
       volumes:
-      - name: policy-config
-        configMap:
-          name: {{ .name }}-minio-policy
-      - name: config-volume
-        emptyDir: {}
+        - name: policy-config
+          configMap:
+            name: {{ .name }}-minio-policy
+        - name: config-volume
+          emptyDir: {}
+      restartPolicy: OnFailure
   backoffLimit: 4
 ---
 {{- end }}

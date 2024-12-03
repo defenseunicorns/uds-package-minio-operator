@@ -40,6 +40,10 @@ components:
     actions:
       onDeploy:
         after:
+          - cmd: ./zarf tools kubectl -n minio rollout restart statefulset
+            description: Restart Minio StatefulSet so pods cycle on upgrades
+          - cmd: ./zarf tools kubectl -n minio rollout status statefulset
+            description: Wait for Rollout to complete before continuing
           - description: Validate Minio Operator Package
             maxTotalSeconds: 300
             wait:
