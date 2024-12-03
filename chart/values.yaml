@@ -2,15 +2,20 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
 
 name: uds-minio
+
 identityOpenidClientSecret: "replaceme"
 identityOpenidConfigUrl:
+
 domain: ###ZARF_VAR_DOMAIN###
+
 rootPassword:
 rootUser: minio
+
 # sso disabled until we can define the protocol mappers via sso secret
 # or update the uds-core keycloak image
 sso:
   enabled: false
+
 apps: []
   # - name: test-app
   #   namespace: ""
@@ -27,5 +32,8 @@ apps: []
   #     secretName:
   #     secretIDKey:
   #     secretPasswordKey:
+
+mcImage: ""
+mcShell: ""
 
 custom: []
