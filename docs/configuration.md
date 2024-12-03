@@ -95,7 +95,7 @@ This package facilitates the ability to provision multiple sets of buckets for a
                     job-name: minio-job # Selector of the app that will be connecting to minio
                   bucketNames: # list of buckets to be provisioned in tenant scoped to the app
                     - mc-cli-test-bucket
-                  policy: "" # Optional: policy override for the scoped resources is the standard policy does not meet the needs of the application use case.
+                  policy: "" # Optional: template-able policy override for the scoped resources if the standard policy does not meet the needs of the application.
                   copyPassword: # Whether to copy the secret to the apps namespace. Must be true or false. See below section of this page for more details.
                     enabled: true
                     secretName: ""

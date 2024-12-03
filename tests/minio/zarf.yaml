@@ -16,6 +16,7 @@ components:
         namespace: mc-cli
         files:
           - uds-package.yaml
-          - mc-cli.yaml
+          - mc-cli-test.yaml
+          - mc-cli-policy.yaml
     images:
       - minio/mc:latest
