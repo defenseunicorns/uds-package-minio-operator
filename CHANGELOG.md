@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.4-uds.2](https://github.com/defenseunicorns/uds-package-minio-operator/compare/v6.0.4-uds.1...v6.0.4-uds.2) (2024-12-03)
+
+
+### Features
+
+* support policy updates on upgrades ([#35](https://github.com/defenseunicorns/uds-package-minio-operator/issues/35)) ([d64de86](https://github.com/defenseunicorns/uds-package-minio-operator/commit/d64de866b13218ab69557083126b82cace01939c))
+
 ## [6.0.4-uds.1](https://github.com/defenseunicorns/uds-package-minio-operator/compare/v6.0.4-uds.0...v6.0.4-uds.1) (2024-12-03)
 
 
