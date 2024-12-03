@@ -1,5 +1,19 @@
 # Changelog
 
+## [6.0.4-uds.1](https://github.com/defenseunicorns/uds-package-minio-operator/compare/v6.0.4-uds.0...v6.0.4-uds.1) (2024-12-03)
+
+
+### Features
+
+* allow for template-able policies for configured apps ([#34](https://github.com/defenseunicorns/uds-package-minio-operator/issues/34)) ([03da776](https://github.com/defenseunicorns/uds-package-minio-operator/commit/03da776ba9b831c241a0f55ec6ade6967999b9ac))
+* remove deprecated secret ([#33](https://github.com/defenseunicorns/uds-package-minio-operator/issues/33)) ([e4dcb45](https://github.com/defenseunicorns/uds-package-minio-operator/commit/e4dcb4542fb072b73b4193dd6cf0eea7ce285624))
+
+
+### Miscellaneous
+
+* **deps:** update minio-operator support dependencies ([#26](https://github.com/defenseunicorns/uds-package-minio-operator/issues/26)) ([de1ec60](https://github.com/defenseunicorns/uds-package-minio-operator/commit/de1ec600b075a593933f7af1fa3a99192f2cb332))
+* update minio sidecar to use cgr image in unicorn flavor ([#31](https://github.com/defenseunicorns/uds-package-minio-operator/issues/31)) ([fbf62dc](https://github.com/defenseunicorns/uds-package-minio-operator/commit/fbf62dcaf27085cf2e33d3f3458e40150deb7416))
+
 ## [6.0.4-uds.0](https://github.com/defenseunicorns/uds-package-minio-operator/compare/v6.0.2-uds.2...v6.0.4-uds.0) (2024-10-29)
 
 
