@@ -36,4 +36,4 @@ apps: []
 mcImage: ""
 mcShell: ""
 
-custom: []
+additionalNetworkAllow: []
