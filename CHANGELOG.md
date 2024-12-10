@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.4-uds.3](https://github.com/defenseunicorns/uds-package-minio-operator/compare/v6.0.4-uds.2...v6.0.4-uds.3) (2024-12-10)
+
+
+### Miscellaneous
+
+* update custom network properties key ([#37](https://github.com/defenseunicorns/uds-package-minio-operator/issues/37)) ([9826552](https://github.com/defenseunicorns/uds-package-minio-operator/commit/9826552caefeacbdaba2d885202f990a40c45ed4))
+
 ## [6.0.4-uds.2](https://github.com/defenseunicorns/uds-package-minio-operator/compare/v6.0.4-uds.1...v6.0.4-uds.2) (2024-12-03)
 
 
