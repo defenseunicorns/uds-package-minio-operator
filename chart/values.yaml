@@ -11,6 +11,9 @@ domain: ###ZARF_VAR_DOMAIN###
 rootPassword:
 rootUser: minio
 
+console:
+  gateway: admin
+
 # sso disabled until we can define the protocol mappers via sso secret
 # or update the uds-core keycloak image
 sso:
