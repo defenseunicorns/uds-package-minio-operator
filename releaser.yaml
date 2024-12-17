@@ -4,10 +4,10 @@
 flavors:
   - name: upstream
     # renovate-uds: datasource=docker depName=quay.io/minio/operator extractVersion=^v?(?<version>\d+\.\d+\.\d+)$
-    version: 6.0.4-uds.3
+    version: 6.0.4-uds.4
   - name: registry1
     # renovate-uds: datasource=docker depName=registry1.dso.mil/ironbank/opensource/minio/operator extractVersion=^v?(?<version>\d+\.\d+\.\d+)$
-    version: 6.0.4-uds.3
+    version: 6.0.4-uds.4
   - name: unicorn
     # renovate-uds: datasource=docker depName=cgr.dev/du-uds-defenseunicorns/minio-operator-fips
-    version: 6.0.4-uds.3
+    version: 6.0.4-uds.4
