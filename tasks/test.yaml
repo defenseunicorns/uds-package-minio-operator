@@ -38,6 +38,6 @@ tasks:
           # wait for a network address to return a 200 OK response
           network:
             protocol: https
-            address: minio-console.uds.dev
+            address: minio-console.admin.uds.dev
             code: 200
 # TODO add playwright tests for ui + sso once sso is fully automatable in CI

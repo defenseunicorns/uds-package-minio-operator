@@ -1,5 +1,6 @@
 # Copyright 2024 Defense Unicorns
 # SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
 
-mcImage: minio/mc:RELEASE.2024-08-13T05-33-17Z
+# renovate: datasource=docker depName=minio/mc versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
+mcImage: minio/mc:RELEASE.2024-11-21T17-21-54Z
 mcShell: /bin/sh
