@@ -36,7 +36,7 @@ components:
       - quay.io/minio/operator-sidecar:v6.0.2
       # minio RELEASE regex: https://regex101.com/r/Xc6mrh/1
       - minio/mc:RELEASE.2024-11-21T17-21-54Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
-      - quay.io/minio/minio:RELEASE.2024-12-13T22-19-12Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
+      - quay.io/minio/minio:RELEASE.2024-12-18T13-15-44Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
 
 
   - name: minio-operator
@@ -84,4 +84,4 @@ components:
       - cgr.dev/du-uds-defenseunicorns/minio-operator-fips:6.0.4
       - cgr.dev/du-uds-defenseunicorns/minio-operator-sidecar:6.0.4
       - cgr.dev/du-uds-defenseunicorns/minio-client-fips:0.20241121.172154
-      - cgr.dev/du-uds-defenseunicorns/minio:0.20241213.221912
+      - cgr.dev/du-uds-defenseunicorns/minio:0.20241218.131544
