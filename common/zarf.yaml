@@ -1,7 +1,7 @@
 # Copyright 2024 Defense Unicorns
 # SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
 
-# yaml-language-server: $schema=https://raw.githubusercontent.com/defenseunicorns/zarf/v0.41.0/zarf.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/defenseunicorns/zarf/v0.44.0/zarf.schema.json
 kind: ZarfPackageConfig
 
 metadata:
@@ -40,6 +40,10 @@ components:
     actions:
       onDeploy:
         after:
+          - cmd: ./zarf tools kubectl -n minio rollout restart statefulset
+            description: Restart Minio StatefulSet so pods cycle on upgrades
+          - cmd: ./zarf tools kubectl -n minio rollout status statefulset
+            description: Wait for Rollout to complete before continuing
           - description: Validate Minio Operator Package
             maxTotalSeconds: 300
             wait:

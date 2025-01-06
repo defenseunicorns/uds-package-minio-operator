@@ -1,0 +1,9 @@
+# Copyright 2024 Defense Unicorns
+# SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
+
+tenant:
+  image:
+    repository: cgr.dev/du-uds-defenseunicorns/minio
+    # renovate: datasource=docker depName=cgr.dev/du-uds-defenseunicorns/minio
+    tag: "0.20241213.221912"
+    pullPolicy: IfNotPresent

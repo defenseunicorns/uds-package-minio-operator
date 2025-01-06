@@ -1,0 +1,6 @@
+# Copyright 2024 Defense Unicorns
+# SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
+
+# renovate: datasource=docker depName=cgr.dev/du-uds-defenseunicorns/minio-client-fips
+mcImage: cgr.dev/du-uds-defenseunicorns/minio-client-fips:0.20241121.172154
+mcShell: /bin/bash

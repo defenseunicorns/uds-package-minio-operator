@@ -5,6 +5,9 @@ tenant:
   name: ###ZARF_VAR_TENANT###
   configuration:
     name: ###ZARF_VAR_TENANT###
+  configSecret:
+    accessKey: null
+    secretKey: null
     existingSecret: true
   pools:
       # 1x4 for standalone

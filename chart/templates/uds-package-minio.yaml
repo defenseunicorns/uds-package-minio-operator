@@ -19,7 +19,6 @@ spec:
       - service: {{ .Values.name }}-hl
         selector:
           v1.min.io/tenant: {{ .Values.name }}
-
         host: minio
         gateway: tenant
         port: 9000
@@ -27,7 +26,7 @@ spec:
         selector:
           v1.min.io/tenant: {{ .Values.name }}
         host: minio-console
-        gateway: tenant
+        gateway: {{ .Values.console.gateway }}
         port: 9090
     allow:
       # Needed for jobs that provision resources in minio from the tenant namespace
@@ -86,7 +85,7 @@ spec:
 
 
       # Custom rules for unanticipated scenarios
-      {{- range .Values.custom }}
+      {{- range .Values.additionalNetworkAllow }}
       - direction: {{ .direction }}
         selector:
           {{ .selector | toYaml | nindent 10 }}

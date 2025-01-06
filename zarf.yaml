@@ -6,10 +6,7 @@ kind: ZarfPackageConfig
 metadata:
   name: minio-operator
   description: "UDS Minio Operator Package"
-  # x-release-please-start-version
-  version: "6.0.2-uds.2"
-  # x-release-please-end
-
+  version: "dev"
 
 variables:
   - name: TENANT
@@ -19,8 +16,7 @@ variables:
 
 components:
   - name: minio-operator
-    required: false
-    default: true
+    required: true
     import:
       path: common
     only:
@@ -37,14 +33,14 @@ components:
           - values/upstream-tenant-values.yaml
     images:
       - quay.io/minio/operator:v6.0.4
-      - minio/mc:RELEASE.2024-08-13T05-33-17Z
-      - quay.io/minio/minio:RELEASE.2024-08-03T04-33-23Z
       - quay.io/minio/operator-sidecar:v6.0.2
+      # minio RELEASE regex: https://regex101.com/r/Xc6mrh/1
+      - minio/mc:RELEASE.2024-11-21T17-21-54Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
+      - quay.io/minio/minio:RELEASE.2024-12-13T22-19-12Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
 
 
   - name: minio-operator
-    required: false
-    default: true
+    required: true
     import:
       path: common
     only:
@@ -64,5 +60,28 @@ components:
     images:
       - registry1.dso.mil/ironbank/opensource/minio/operator:v6.0.4
       - registry1.dso.mil/ironbank/opensource/minio/operator-sidecar:v6.0.2
-      - registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2024-08-13T05-33-17Z
-      - registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2024-06-04T19-20-08Z
+      # minio RELEASE regex: https://regex101.com/r/Xc6mrh/1
+      - registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2024-11-21T17-21-54Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
+      - registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2024-12-13T22-19-12Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
+
+  - name: minio-operator
+    required: true
+    import:
+      path: common
+    only:
+      flavor: unicorn
+    charts:
+      - name: uds-minio-config
+        valuesFiles:
+          - values/unicorn-config-values.yaml
+      - name: minio-operator
+        valuesFiles:
+          - values/unicorn-values.yaml
+      - name: minio-tenant
+        valuesFiles:
+          - values/unicorn-tenant-values.yaml
+    images:
+      - cgr.dev/du-uds-defenseunicorns/minio-operator-fips:6.0.4
+      - cgr.dev/du-uds-defenseunicorns/minio-operator-sidecar:6.0.4
+      - cgr.dev/du-uds-defenseunicorns/minio-client-fips:0.20241121.172154
+      - cgr.dev/du-uds-defenseunicorns/minio:0.20241213.221912

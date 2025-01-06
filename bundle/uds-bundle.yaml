@@ -5,16 +5,12 @@ kind: UDSBundle
 metadata:
   name: minio-test
   description: A UDS Bundle for minio operator (+tenant)
-  # x-release-please-start-version
-  version: 6.0.2-uds.2
-  # x-release-please-end
+  version: dev
 
 packages:
   - name: minio-operator
     path: ../
-    # x-release-please-start-version
-    ref: 6.0.2-uds.2
-    # x-release-please-end
+    ref: dev
     overrides:
       minio-operator:
         uds-minio-config:
@@ -22,13 +18,41 @@ packages:
             # Test helm overrides to provision app specific buckets, policies and creds
             - path: apps
               value:
-                - name: mc-cli
+                - name: mc-cli-test
                   namespace: mc-cli
                   remoteSelector:
-                    job-name: minio-job
+                    job-name: minio-test-job
                   bucketNames:
                     - mc-cli-test-bucket
-                  policy: ""
+                  copyPassword:
+                    enabled: true
+                    secretName: ""
+                    secretIDKey: ""
+                    secretPasswordKey: ""
+                - name: mc-cli-policy
+                  namespace: mc-cli
+                  remoteSelector:
+                    job-name: minio-policy-job
+                  bucketNames:
+                    - mc-cli-policy-bucket
+                  policy: |
+                    {
+                      "Version": "2012-10-17",
+                      "Statement": [
+                        {
+                          "Effect": "Allow",
+                          "Action": [
+                            "s3:ListBucket"
+                          ],
+                          "Resource": [
+                            {{- $lenBuckets := len .bucketNames }}
+                            {{- range $index, $bucket := .bucketNames }}
+                            "arn:aws:s3:::{{ $bucket }}"{{ if lt (add $index 1) $lenBuckets }},{{ end }}
+                            {{- end }}
+                          ]
+                        }
+                      ]
+                    }
                   copyPassword:
                     enabled: true
                     secretName: ""
