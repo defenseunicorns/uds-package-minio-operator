@@ -5,7 +5,7 @@
   "extends": [
     "github>defenseunicorns/uds-common//config/renovate.json5",
     ":semanticPrefixFixDepsChoreOthers",
-    "config:base",
+    "config:recommended",
     "group:all",
     "replacements:all",
     "workarounds:all"
@@ -13,15 +13,25 @@
   "packageRules": [
     {
       "groupName": "Minio-operator Support Dependencies",
-      "labels": ["support-deps"],
+      "labels": [
+        "support-deps"
+      ],
       "commitMessageTopic": "support-deps",
-      "packagePatterns": ["*"]
+      "matchPackageNames": [
+        "*"
+      ]
     },
     {
       "groupName": "Minio-operator Package Dependencies",
-      "labels": ["package-deps"],
+      "labels": [
+        "package-deps"
+      ],
       "commitMessageTopic": "package-deps",
-      "matchDatasources": ["docker", "helm", "git-tags"]
+      "matchDatasources": [
+        "docker",
+        "helm",
+        "git-tags"
+      ]
     }
   ]
 }
