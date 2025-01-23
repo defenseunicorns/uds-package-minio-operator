@@ -4,8 +4,8 @@
 operator:
   image:
     repository: cgr.dev/du-uds-defenseunicorns/minio-operator-fips
-    tag: "6.0.4"
+    tag: "7.0.0"
   sidecarImage:
     repository: cgr.dev/du-uds-defenseunicorns/minio-operator-sidecar
-    tag: "6.0.4"
+    tag: "7.0.0"
     pullPolicy: IfNotPresent
