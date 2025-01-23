@@ -64,6 +64,6 @@ components:
             wait:
               cluster:
                 kind: pod
-                name: app=minio
+                name: "v1.min.io/tenant=${ZARF_VAR_TENANT}"
                 namespace: minio
                 condition: Ready
