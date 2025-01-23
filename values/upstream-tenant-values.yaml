@@ -5,4 +5,4 @@ tenant:
   image:
     repository: quay.io/minio/minio
     # renovate: datasource=docker depName=quay.io/minio/minio versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
-    tag: RELEASE.2024-12-13T22-19-12Z
+    tag: RELEASE.2025-01-20T14-49-07Z
