@@ -16,7 +16,7 @@ spec:
           args:
             - |
               BN="mc-cli-policy-bucket"
-              mc alias set myminio $MINIO_SERVER $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
+              mc alias set myminio $MINIO_SERVER $MINIO_ACCESS_KEY $MINIO_SECRET_KEY || exit 1
               echo "Hello from Kubernetes Job!" > /tmp/hello.txt
               if mc cp /tmp/hello.txt myminio/$BN/hello.txt; then
                 echo "Bucket upload should be disallowed but succeeded instead"
