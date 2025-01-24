@@ -13,5 +13,5 @@ spec:
         selector:
         remoteNamespace: minio
         remoteSelector:
-           v1.min.io/tenant: uds-minio
+          v1.min.io/tenant: uds-minio
         description: "Egress from minio CLI (for tests)"
