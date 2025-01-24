@@ -73,7 +73,7 @@ spec:
       {{- range .Values.apps }}
       - direction: Ingress
         selector:
-          v1.min.io/tenant: {{ .Values.name }}
+          v1.min.io/tenant: {{ $.Values.name }}
         remoteNamespace: {{ .namespace }}
         {{ if .remoteSelector }}
         remoteSelector:
