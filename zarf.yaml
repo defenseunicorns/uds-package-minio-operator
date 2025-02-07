@@ -7,6 +7,11 @@ metadata:
   name: minio-operator
   description: "UDS Minio Operator Package"
   version: "dev"
+  annotations:
+    title: MinIO Operator
+    description: MinIO provides a powerful and scalable storage solution that can be deployed across private, public, and hybrid clouds using Kubernetes. Users benefit from lightning-fast performance, easy scalability, and seamless hybrid cloud deployments. The UI is simple yet robust, offering a management console for configuring tenants and monitoring clusters. The MinIO Kubernetes Operator simplifies tenant deployments and integrates easily with cloud environments, providing enhanced control and flexibility.
+    categories: Databases,Kubernetes (K8s),Networking,Software Dev
+    keywords: Object Storage,S3-compatible,Cloud Storage,Kubernetes,Hybrid Cloud
 
 variables:
   - name: TENANT
