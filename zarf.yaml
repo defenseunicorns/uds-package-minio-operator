@@ -83,5 +83,5 @@ components:
     images:
       - cgr.dev/du-uds-defenseunicorns/minio-operator-fips:7.0.0
       - cgr.dev/du-uds-defenseunicorns/minio-operator-sidecar:7.0.0
-      - cgr.dev/du-uds-defenseunicorns/minio-client-fips:0.20250215.103616
-      - cgr.dev/du-uds-defenseunicorns/minio:0.20250218.162555
+      - cgr.dev/du-uds-defenseunicorns/minio-client-fips:0.20250221.160046
+      - cgr.dev/du-uds-defenseunicorns/minio:0.20250228.095516
