@@ -12,12 +12,15 @@ metadata:
     dev.uds.categories: Databases, Kubernetes (K8s), Networking, Software Dev
     dev.uds.keywords: Object Storage, S3-compatible, Cloud Storage, Kubernetes, Hybrid Cloud
     dev.uds.icon: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgeG1sbnM6dj0iaHR0cHM6Ly92ZWN0YS5pby9uYW5vIj48cGF0aCBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9Ii4wMSIgZD0iTTEyLDEyaDU2djU2SDEyeiIvPjxwYXRoIGQ9Ik00My45MTYsNjhsLTMuMjk2LTMuMzczVjQ0LjExOWwtMTQuMzQyLDcuMjg2Yy0uMTAzLjAyOS0uMDc0LS4wNTUtLjA3NC0uMTIyLjAwMS0uNjA0LjQ3My0yLjA5MS42NjYtMi43MzIsMi42MjYtOC43MzYsOC45NjMtMTYuMjk5LDE3LjA5NS0yMC4zODV2MTAuNTM3Yy42NTctLjExMSwxLjQwNS0uNjIzLDEuOTE5LTEuMDU4LDIuOTA0LTIuNDYsMy4wODEtNi42MTIuNjg3LTkuNTAyLTIuMjQ0LTIuNzA5LTUuMTM3LTUuMTI3LTcuNDUyLTcuODA1LTQuNTM4LTUuMjUxLDEuOTY3LTEwLjkwMSw2LjQ5My03LjA4OS41NzYuNDg1LDEuMTI2IDEuMTc0LDEuNTUzIDEuNzk0LDIuMzM4IDMuMzk4LDQuMjY1IDcuMjM1LDYuNTMzIDEwLjY5NS4wNTQuMDk2LjE4LjQ3Ni4wMzIuNTA5LS4xMDkuMDI0LS42NTQtLjU1My0uNzYzLS42NjQtMi43NTQtMi44MDgtNS4zNzctNS43NDktOC4xMTQtOC41Ny0uNDE1LS40MjgtMS4zMzQtMS40NTMtMS44MjItMS42NzMtMS42MTctLjcyOS0zLjA2MiwxLjIyOS0xLjg2OCwyLjU1OSAyLjQwMSwyLjY1MSA1LjA2Miw1LjEgNy40NTIsNy43NTYgNC40MjIsNC45MTMgMy40ODgsMTIuMTIzLTIuMjU1LDE1LjQ3LS43NzkuNDU0LTEuNjIxLjc5Ny0yLjM5NiwxLjI1Nkw0My45NjUsNjhoLS4wNDl6TTQwLjYyLDM0LjAyNWMtLjI1LjA4Ny0uNDk5LjMyMS0uNzEyLjQ5NC0zLjUxMSwyLjg0LTYuMzY0LDYuNTc5LTguMzQsMTAuNjM0bDguMDY5LTQuMTFjLjE5My0uMTA2Ljk4My0uNDg1Ljk4My0uNjl2LTYuMzI3eiIgZmlsbD0iI2M2MmQ0OSIvPjwvc3ZnPg==
+
 variables:
   - name: TENANT
     default: uds-minio
   - name: DOMAIN
     default: uds.dev
+
 components:
+
   - name: minio-operator
     required: true
     import:
@@ -40,6 +43,7 @@ components:
       # minio RELEASE regex: https://regex101.com/r/Xc6mrh/1
       - minio/mc:RELEASE.2025-02-21T16-00-46Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
       - quay.io/minio/minio:RELEASE.2025-02-28T09-55-16Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
+
   - name: minio-operator
     required: true
     import:
@@ -64,6 +68,7 @@ components:
       # minio RELEASE regex: https://regex101.com/r/Xc6mrh/1
       - registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2025-01-17T23-25-50Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
       - registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2025-01-20T14-49-07Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
+
   - name: minio-operator
     required: true
     import:
