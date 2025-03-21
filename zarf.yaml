@@ -38,11 +38,11 @@ components:
         valuesFiles:
           - values/upstream-tenant-values.yaml
     images:
-      - quay.io/minio/operator:v7.0.0
-      - quay.io/minio/operator-sidecar:v7.0.0
+      - quay.io/minio/operator:v7.0.1
+      - quay.io/minio/operator-sidecar:v7.0.1
       # minio RELEASE regex: https://regex101.com/r/Xc6mrh/1
-      - minio/mc:RELEASE.2025-02-21T16-00-46Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
-      - quay.io/minio/minio:RELEASE.2025-02-28T09-55-16Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
+      - minio/mc:RELEASE.2025-03-12T17-29-24Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
+      - quay.io/minio/minio:RELEASE.2025-03-12T18-04-18Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
 
   - name: minio-operator
     required: true
@@ -86,7 +86,7 @@ components:
         valuesFiles:
           - values/unicorn-tenant-values.yaml
     images:
-      - cgr.dev/du-uds-defenseunicorns/minio-operator-fips:7.0.0
-      - cgr.dev/du-uds-defenseunicorns/minio-operator-sidecar:7.0.0
-      - cgr.dev/du-uds-defenseunicorns/minio-client-fips:0.20250221.160046
-      - cgr.dev/du-uds-defenseunicorns/minio:0.20250228.095516
+      - cgr.dev/du-uds-defenseunicorns/minio-operator-fips:7.0.1
+      - cgr.dev/du-uds-defenseunicorns/minio-operator-sidecar:7.0.1
+      - cgr.dev/du-uds-defenseunicorns/minio-client-fips:0.20250312.172924
+      - cgr.dev/du-uds-defenseunicorns/minio:0.20250312.180418
