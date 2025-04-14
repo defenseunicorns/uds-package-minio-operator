@@ -10,7 +10,8 @@ spec:
   monitor: 
     - selector:
         v1.min.io/tenant: {{ .Values.name }}
-      portName: http-minio
+      portName: minio-port
+      kind: PodMonitor
       targetPort: 9000
       description: "Metrics"
       path: /minio/v2/metrics/cluster
