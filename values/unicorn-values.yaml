@@ -7,5 +7,5 @@ operator:
     tag: "7.0.1"
   sidecarImage:
     repository: cgr.dev/du-uds-defenseunicorns/minio-operator-sidecar
-    tag: "7.0.1"
+    tag: "7.1.0"
     pullPolicy: IfNotPresent
