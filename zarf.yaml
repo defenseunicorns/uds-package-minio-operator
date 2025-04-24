@@ -38,11 +38,11 @@ components:
         valuesFiles:
           - values/upstream-tenant-values.yaml
     images:
-      - quay.io/minio/operator:v7.0.1
-      - quay.io/minio/operator-sidecar:v7.0.1
+      - quay.io/minio/operator:v7.1.1
+      - quay.io/minio/operator-sidecar:v7.1.0
       # minio RELEASE regex: https://regex101.com/r/Xc6mrh/1
-      - minio/mc:RELEASE.2025-03-12T17-29-24Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
-      - quay.io/minio/minio:RELEASE.2025-04-03T14-56-28Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
+      - minio/mc:RELEASE.2025-04-16T18-13-26Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
+      - quay.io/minio/minio:RELEASE.2025-04-22T22-12-26Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
 
   - name: minio-operator
     required: true
@@ -63,8 +63,8 @@ components:
         valuesFiles:
           - values/registry1-tenant-values.yaml
     images:
-      - registry1.dso.mil/ironbank/opensource/minio/operator:v7.0.1
-      - registry1.dso.mil/ironbank/opensource/minio/operator-sidecar:v7.0.1
+      - registry1.dso.mil/ironbank/opensource/minio/operator:v7.1.0
+      - registry1.dso.mil/ironbank/opensource/minio/operator-sidecar:v7.1.0
       # minio RELEASE regex: https://regex101.com/r/Xc6mrh/1
       - registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2025-01-17T23-25-50Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
       - registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2025-04-03T14-56-28Z # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z$
@@ -86,7 +86,7 @@ components:
         valuesFiles:
           - values/unicorn-tenant-values.yaml
     images:
-      - cgr.dev/du-uds-defenseunicorns/minio-operator-fips:7.0.1
-      - cgr.dev/du-uds-defenseunicorns/minio-operator-sidecar:7.0.1
-      - cgr.dev/du-uds-defenseunicorns/minio-client-fips:0.20250403.170756
-      - cgr.dev/du-uds-defenseunicorns/minio:0.20250403.145628
+      - cgr.dev/du-uds-defenseunicorns/minio-operator-fips:7.1.1
+      - cgr.dev/du-uds-defenseunicorns/minio-operator-sidecar:7.1.1
+      - cgr.dev/du-uds-defenseunicorns/minio-client-fips:0.20250416.181326
+      - cgr.dev/du-uds-defenseunicorns/minio:0.20250422.221226

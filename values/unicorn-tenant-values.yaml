@@ -5,5 +5,5 @@ tenant:
   image:
     repository: cgr.dev/du-uds-defenseunicorns/minio
     # renovate: datasource=docker depName=cgr.dev/du-uds-defenseunicorns/minio
-    tag: "0.20250403.145628"
+    tag: "0.20250422.221226"
     pullPolicy: IfNotPresent
