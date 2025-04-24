@@ -89,4 +89,4 @@ components:
       - cgr.dev/du-uds-defenseunicorns/minio-operator-fips:7.1.1
       - cgr.dev/du-uds-defenseunicorns/minio-operator-sidecar-fips:7.1.1
       - cgr.dev/du-uds-defenseunicorns/minio-client-fips:0.20250416.181326
-      - cgr.dev/du-uds-defenseunicorns/minio-fips:0.20250422.221226
+      - cgr.dev/du-uds-defenseunicorns/minio-fips:0.20250408.154124
