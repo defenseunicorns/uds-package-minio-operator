@@ -6,6 +6,7 @@ tenant:
   configuration:
     name: ###ZARF_VAR_TENANT###
   configSecret:
+    name: ###ZARF_VAR_TENANT###
     accessKey: null
     secretKey: null
     existingSecret: true
