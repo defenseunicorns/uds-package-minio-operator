@@ -3,7 +3,7 @@
 
 tenant:
   image:
-    repository: cgr.dev/du-uds-defenseunicorns/minio
+    repository: cgr.dev/du-uds-defenseunicorns/minio-fips
     # renovate: datasource=docker depName=cgr.dev/du-uds-defenseunicorns/minio
     tag: "0.20250422.221226"
     pullPolicy: IfNotPresent
