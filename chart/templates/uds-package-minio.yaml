@@ -16,6 +16,8 @@ spec:
       description: "Metrics"
       path: /minio/v2/metrics/cluster
   network:
+    serviceMesh:
+      mode: {{ if .Values.ambient }}ambient{{ else }}sidecar{{ end }}
     expose:
       - service: {{ .Values.name }}-hl
         selector:
