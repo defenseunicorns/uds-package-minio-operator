@@ -8,6 +8,8 @@ metadata:
   namespace: mc-cli
 spec:
   network:
+    serviceMesh:
+      mode: ambient
     allow:
       - direction: Egress
         selector:
