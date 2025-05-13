@@ -14,6 +14,14 @@ includes:
   - upgrade: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.2/tasks/upgrade.yaml
   - compliance: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.2/tasks/compliance.yaml
 
+
+# Temporarily expose istio mode for testing both sidecar and ambient modes TODO: Remove in future release
+variables:
+  - name: ISTIO_MODE
+    description: "The Istio mode to use for the test"
+    default: ambient
+
+
 tasks:
   - name: default
     description: Create K3D Cluster with UDS-Core (Dev) and Minio Operator
@@ -33,7 +41,13 @@ tasks:
     description: Test and validate cluster is deployed with Minio Operator
     actions:
       - task: create:test-bundle
+      # temp solution to test both sidecar and ambient modes TODO: Remove in future release
       - task: deploy:test-bundle
+        with: 
+          config: "bundle/uds-config-sidecar.yaml"
+        if: ${{ eq .variables.ISTIO_MODE "sidecar" }}
+      - task: deploy:test-bundle
+        if: ${{ eq .variables.ISTIO_MODE "ambient" }}
       - task: setup:create-doug-user
       - task: test:all
 
@@ -59,7 +73,13 @@ tasks:
     actions:
       - task: upgrade:create-latest-tag-bundle
       - task: setup:k3d-test-cluster
+      # temp solution to test both sidecar and ambient modes TODO: Remove in future release
       - task: deploy:test-bundle
+        with: 
+          config: "bundle/uds-config-sidecar.yaml"
+        if: ${{ eq .variables.ISTIO_MODE "sidecar" }}
+      - task: deploy:test-bundle
+        if: ${{ eq .variables.ISTIO_MODE "ambient" }}
       - task: compliance:validate
       - task: create-dev-package
       - task: create-deploy-test-bundle
