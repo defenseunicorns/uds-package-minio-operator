@@ -4,6 +4,5 @@
 # This config tempoarily exists while we test the sidecar mode of Istio in addition to ambient mode.
 # Once we are done testing, this file will be removed. TODO: Remove this file once sidecar mode is deprecated.
 variables:
-  minio:
-    uds-minio-config:
-      ambient: false
+  minio-operator:
+    ambient: false
