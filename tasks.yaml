@@ -43,7 +43,7 @@ tasks:
       - task: create:test-bundle
       # temp solution to test both sidecar and ambient modes TODO: Remove in future release
       - task: deploy:test-bundle
-        with: 
+        with:
           config: "bundle/uds-config-sidecar.yaml"
         if: ${{ eq .variables.ISTIO_MODE "sidecar" }}
       - task: deploy:test-bundle
@@ -75,7 +75,7 @@ tasks:
       - task: setup:k3d-test-cluster
       # temp solution to test both sidecar and ambient modes TODO: Remove in future release
       - task: deploy:test-bundle
-        with: 
+        with:
           config: "bundle/uds-config-sidecar.yaml"
         if: ${{ eq .variables.ISTIO_MODE "sidecar" }}
       - task: deploy:test-bundle
