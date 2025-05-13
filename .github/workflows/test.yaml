@@ -67,5 +67,7 @@ jobs:
       upgrade-flavors: ${{ needs.check-flavor.outputs.upgrade-flavors }}
       flavor: ${{ matrix.flavor }}
       type: ${{ matrix.type }}
+      # This is a temporary solution to test both sidecar and ambient modes TODO: Remove in future release
+      options: "--set ISTIO_MODE=${{ matrix.istio_mode }}"
       runsOn: uds-swf-ubuntu-big-boy-4-core
     secrets: inherit # Inherits all secrets from the parent workflow.
