@@ -55,6 +55,13 @@ jobs:
       matrix:
         type: [install, upgrade]
         flavor: [upstream, registry1, unicorn]
+        # This is a temporary solution to test both sidecar and ambient modes TODO: Remove in future release
+        istio_mode: [ambient, sidecar]
+        exclude:
+          - flavor: upstream
+            istio_mode: sidecar
+          - flavor: unicorn
+            istio_mode: sidecar
     uses: defenseunicorns/uds-common/.github/workflows/callable-test.yaml@42196a596353dc9f8acb21a6a86b5d4a4f7ee76f # v1.14.2
     with:
       upgrade-flavors: ${{ needs.check-flavor.outputs.upgrade-flavors }}
