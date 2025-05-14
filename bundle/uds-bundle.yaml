@@ -14,6 +14,11 @@ packages:
     overrides:
       minio-operator:
         uds-minio-config:
+          # Ambient variable is tempoarily exposed to test both sidecar and ambient modes TODO: Remove in future release
+          variables:
+            - path: ambient
+              default: true
+              name: ambient
           values:
             # Test helm overrides to provision app specific buckets, policies and creds
             - path: apps

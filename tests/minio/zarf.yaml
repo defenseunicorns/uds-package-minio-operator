@@ -8,6 +8,12 @@ metadata:
   description: "A test that minio can be connected to and is functional"
   version: 0.1.0
 
+variables:
+  - name: ISTIO_MODE
+    description: "The Istio mode to use for the test"
+    default: ambient
+
+
 components:
   - name: test-minio-connectivity
     required: true
