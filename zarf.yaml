@@ -86,7 +86,7 @@ components:
         valuesFiles:
           - values/unicorn-tenant-values.yaml
     images:
-      - cgr.dev/du-uds-defenseunicorns/minio-operator-fips:7.1.1
-      - cgr.dev/du-uds-defenseunicorns/minio-operator-sidecar-fips:7.1.1
-      - cgr.dev/du-uds-defenseunicorns/minio-client-fips:0.20250416.181326
-      - cgr.dev/du-uds-defenseunicorns/minio-fips:0.20250422.221226
+      - quay.io/rfcurated/minio/operator-sidecar:7.1.0-jammy-scratch-fips-rfcurated
+      - quay.io/rfcurated/minio/operator:7.1.1-jammy-scratch-fips-rfcurated
+      - quay.io/rfcurated/minio/mc:RELEASE.2025-04-16T18-13-26Z-jammy-scratch-fips-rfcurated # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z.*$
+      - quay.io/rfcurated/minio/minio:RELEASE.2025-04-22T22-12-26Z-jammy-scratch-fips-rfcurated # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z.*$
