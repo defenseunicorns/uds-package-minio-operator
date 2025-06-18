@@ -4,8 +4,8 @@
 operator:
   image:
     repository: quay.io/rfcurated/minio/operator
-    tag: "7.1.1-jammy-scratch-fips-rfcurated"
+    tag: 7.1.1-jammy-scratch-fips-rfcurated
   sidecarImage:
     repository: quay.io/rfcurated/minio/operator-sidecar
-    tag: "7.1.0-jammy-scratch-fips-rfcurated"
+    tag: 7.1.0-jammy-scratch-fips-rfcurated
     pullPolicy: IfNotPresent
