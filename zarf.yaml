@@ -89,4 +89,4 @@ components:
       - quay.io/rfcurated/minio/operator-sidecar:7.1.0-jammy-scratch-fips-rfcurated
       - quay.io/rfcurated/minio/operator:7.1.1-jammy-scratch-fips-rfcurated
       - quay.io/rfcurated/minio/mc:RELEASE.2025-05-21T01-59-54Z-jammy-scratch-fips-rfcurated # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z.*$
-      - quay.io/rfcurated/minio/minio:RELEASE.2025-05-24T17-08-30Z-jammy-scratch-fips-rfcurated # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z.*$
+      - quay.io/rfcurated/minio/minio:RELEASE.2025-06-13T11-33-47Z-jammy-scratch-fips-rfcurated # renovate: versioning=regex:^RELEASE\.(?<major>\d+)-(?<minor>\d+)-(?<patch>\d+)T(?<build>\d+)-(?<revision>\d+)-\d+Z.*$
