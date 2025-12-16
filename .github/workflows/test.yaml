@@ -55,7 +55,7 @@ jobs:
       type: ${{ matrix.type }}
       # This is a temporary solution to test both sidecar and ambient modes TODO: Remove in future release
       options: "--set ISTIO_MODE=${{ matrix.istio_mode }}"
-      runsOn: uds-swf-ubuntu-big-boy-4-core
+      runsOn: appstore-4-core-amd64
     secrets: inherit # Inherits all secrets from the parent workflow.
 
   verify-test:
