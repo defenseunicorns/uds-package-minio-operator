@@ -34,23 +34,6 @@ spec:
         remoteGenerated: KubeAPI
 
       # Custom rules for tenants deployed outside the built-in tenant namespace
-      {{- range .Values.operatorAdditionalNetworkAllow }}
-      - direction: {{ .direction }}
-        {{- if .selector }}
-        selector:
-          {{ .selector | toYaml | nindent 10 }}
-        {{- end }}
-        {{- if not .remoteGenerated }}
-        remoteNamespace: {{ .remoteNamespace | trimAll "\"" | quote }}
-        {{- if .remoteSelector }}
-        remoteSelector:
-          {{ .remoteSelector | toYaml | nindent 10 }}
-        {{- end }}
-        {{- if .port }}
-        port: {{ .port }}
-        {{- end }}
-        {{- else }}
-        remoteGenerated: {{ .remoteGenerated }}
-        {{- end }}
-        description: {{ .description | quote }}
+      {{- with .Values.operatorAdditionalNetworkAllow }}
+      {{ toYaml . | nindent 6 }}
       {{- end }}
