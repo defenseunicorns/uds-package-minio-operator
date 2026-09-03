@@ -19,12 +19,13 @@ spec:
     serviceMesh:
       mode: {{ if .Values.ambient }}ambient{{ else }}sidecar{{ end }}
     expose:
-      - service: {{ .Values.name }}-hl
+      - service: minio
         selector:
           v1.min.io/tenant: {{ .Values.name }}
         host: minio
         gateway: tenant
-        port: 9000
+        port: 80
+        targetPort: 9000
       - service: {{ .Values.name }}-console
         selector:
           v1.min.io/tenant: {{ .Values.name }}
